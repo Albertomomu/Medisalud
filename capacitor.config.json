@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "Lowgames",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
