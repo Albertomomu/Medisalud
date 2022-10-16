@@ -4,7 +4,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
 }
 
@@ -24,4 +24,10 @@
 
 #container a {
   text-decoration: none;
+}
+
+ion-content{
+  
+  --background: url(/assets/images/homeBg2.jpg) no-repeat center center / cover;
+
 }

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Login</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-item class="ion-margin-top">
+    <ion-label>Email</ion-label>
+    <ion-input type="email" id="emailLogin"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Password</ion-label>
+    <ion-input type="password" id="passwordLogin"></ion-input>
+  </ion-item>
+  <ion-button expand="block" class="ion-margin-top" (click)="loginUser()">Login</ion-button>
+  <ion-button expand="block" class="ion-margin-top" [routerLink]="['/register']">Create an account</ion-button>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="2">
+        <ion-button color="dark" (click)="loginWithGoole()"><ion-icon name="logo-google"></ion-icon></ion-button>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button color="dark" (click)="loginWithGithub()"><ion-icon name="logo-github"></ion-icon></ion-button>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button color="dark" (click)="loginWithFacebook()"><ion-icon name="logo-facebook"></ion-icon></ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
