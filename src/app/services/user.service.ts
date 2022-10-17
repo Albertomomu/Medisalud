@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,
-         signInWithPopup, GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider } from '@angular/fire/auth';
+         signInWithPopup, GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider, getAuth } from '@angular/fire/auth';
 
 @Injectable({
     providedIn: 'root'
@@ -31,6 +31,10 @@ export class UserService {
 
     logout() {
         return signOut(this.auth);
+    }
+
+    getAuth() {
+        return getAuth();
     }
 
 }
