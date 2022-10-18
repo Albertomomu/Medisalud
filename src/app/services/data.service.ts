@@ -17,4 +17,9 @@ constructor(private http: HttpClient){}
         );
     }
 
+    mostrarRegistros( username: string) {
+        this.http.get('https://lowgames-e327f-default-rtdb.europe-west1.firebasedatabase.app/fichar/' + username + '.json')
+        .subscribe(data => console.log(data));
+    }
+
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { DataServices } from 'src/app/services/data.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-principal',
@@ -15,7 +16,11 @@ export class PrincipalComponent implements OnInit {
   auth = this.userService.getAuth();
   user = this.auth.currentUser;
 
-  constructor(private userService: UserService ,private router: Router, private data: DataServices) { }
+  constructor(
+    private userService: UserService ,
+    private router: Router,
+    private data: DataServices,
+    private alertController: AlertController) { }
 
   ngOnInit() {}
 
@@ -44,8 +49,22 @@ export class PrincipalComponent implements OnInit {
   fichar(username) {
     username = username.split(' ');
     this.data.guardarRegistros(username[0]);
-    console.log('fichar');
   }
 
+  mostrarFichadas(username){
+    username = username.split(' ');
+    this.data.mostrarRegistros(username[0]);
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Info',
+      subHeader: 'Succesfully clock in',
+      message: 'You clocked in successfully',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
 
 }
