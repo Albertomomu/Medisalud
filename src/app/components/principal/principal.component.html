@@ -36,5 +36,6 @@
     <ion-button expand="block" size="medium" (click)="mostrarFichadas(user.displayName)">
       Ver fichadas
     </ion-button>
+    <div *ngIf="dataFichada">{{fichadaArray[1]}}</div>
   </ion-content>
 </div>

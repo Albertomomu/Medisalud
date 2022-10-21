@@ -6,10 +6,14 @@ import { Injectable } from '@angular/core';
 })
 export class DataServices {
 
+    dataFichada: any = '';
+
 constructor(private http: HttpClient){}
 
     guardarRegistros( username: string) {
-        const data = new Date();
+        const hour = new Date().toLocaleTimeString('es-ES');
+        const date = new Date().toLocaleDateString('es-ES');
+        const data = date + ' - ' + hour;
         this.http.post('https://lowgames-e327f-default-rtdb.europe-west1.firebasedatabase.app/fichar/' + username + '.json',
         JSON.stringify(data)).subscribe(
             response => console.log('Guardado'),
@@ -19,7 +23,9 @@ constructor(private http: HttpClient){}
 
     mostrarRegistros( username: string) {
         this.http.get('https://lowgames-e327f-default-rtdb.europe-west1.firebasedatabase.app/fichar/' + username + '.json')
-        .subscribe(data => console.log(data));
+        .subscribe(data => {
+            this.dataFichada = data;
+        });
     }
 
 }

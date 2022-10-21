@@ -15,6 +15,8 @@ export class PrincipalComponent implements OnInit {
   type: 'string';
   auth = this.userService.getAuth();
   user = this.auth.currentUser;
+  dataFichada = '';
+  fichadaArray = [];
 
   constructor(
     private userService: UserService ,
@@ -52,8 +54,12 @@ export class PrincipalComponent implements OnInit {
   }
 
   mostrarFichadas(username){
+    this.dataFichada = '';
     username = username.split(' ');
     this.data.mostrarRegistros(username[0]);
+    console.log(this.data.dataFichada);
+    this.dataFichada = JSON.stringify(this.data.dataFichada);
+    this.fichadaArray = this.dataFichada.split(':');
   }
 
   async presentAlert() {
