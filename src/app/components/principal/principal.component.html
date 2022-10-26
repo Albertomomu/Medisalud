@@ -33,12 +33,17 @@
     <ion-button expand="block" size="medium" (click)="[fichar(user.displayName),presentAlert()]">
       Fichar
     </ion-button>
-    <ion-button expand="block" size="medium" (click)="mostrarFichadas(user.displayName)">
+    <ion-button expand="block" size="medium"  (click)="mostrarFichadas(user.displayName)">
       Ver fichadas
-    </ion-button>
+    </ion-button> 
+<!--     <ion-item button class="ion-margin-top" routerLink="/ver-fichadas/" (click)="mostrarFichadas(user.displayName)">
+      <ion-label>Ver fichadas</ion-label>
+    </ion-item> -->
     <div *ngIf="dataFichada">
-      <div *ngFor="let fichada of fichadaArray">
-        {{fichada.substring(23,fichada.length)}}
+      <div *ngFor="let fichada of fichadaArray" class="ion-margin-top">
+        <ion-list lines="full">
+          <ion-item>{{fichada.substring(24,fichada.length - 1)}}</ion-item>
+        </ion-list>
       </div>
     </div>
   </ion-content>

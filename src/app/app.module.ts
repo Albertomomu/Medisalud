@@ -15,9 +15,10 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { PrincipalComponent } from './components/principal/principal.component';
+import { VerFichadasComponent } from './components/ver-fichadas/ver-fichadas.component';
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, LoginComponent, PrincipalComponent],
+  declarations: [AppComponent, RegisterComponent, LoginComponent, PrincipalComponent, VerFichadasComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth())],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],

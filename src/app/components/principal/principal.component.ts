@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { DataServices } from 'src/app/services/data.service';
@@ -11,12 +11,12 @@ import { AlertController } from '@ionic/angular';
 })
 export class PrincipalComponent implements OnInit {
 
+  @Input() fichadaArray = [];
   date: string;
   type: 'string';
   auth = this.userService.getAuth();
   user = this.auth.currentUser;
   dataFichada = '';
-  fichadaArray = [];
 
   constructor(
     private userService: UserService ,
@@ -63,7 +63,7 @@ export class PrincipalComponent implements OnInit {
     this.data.mostrarRegistros(user);
     this.dataFichada = JSON.stringify(this.data.dataFichada);
     this.dataFichada = this.dataFichada.substr(1, this.dataFichada.length-1);
-    console.log(this.dataFichada);
+    this.dataFichada = this.dataFichada.slice(0, this.dataFichada.length -1);
     this.fichadaArray = this.dataFichada.split(',');
   }
 
