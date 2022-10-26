@@ -7,15 +7,26 @@ import { Injectable } from '@angular/core';
 export class DataServices {
 
     dataFichada: any = '';
+    data: any = '';
+    estado = false;
+    msj = '';
 
 constructor(private http: HttpClient){}
 
     guardarRegistros( username: string) {
+        this.msj = '';
         const hour = new Date().toLocaleTimeString('es-ES');
         const date = new Date().toLocaleDateString('es-ES');
-        const data = date + ' - ' + hour;
+        if(this.estado === false){
+            this.estado = true;
+            this.msj = 'Entrada';
+        }else{
+            this.estado = false;
+            this.msj = 'Salida';
+        }
+        this.data = date + ' - ' + hour + ' - Estado: ' + this.msj;
         this.http.post('https://lowgames-e327f-default-rtdb.europe-west1.firebasedatabase.app/fichar/' + username + '.json',
-        JSON.stringify(data)).subscribe(
+        JSON.stringify(this.data)).subscribe(
             response => console.log('Guardado'),
             error => console.log(error)
         );

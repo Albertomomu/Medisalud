@@ -49,27 +49,32 @@ export class PrincipalComponent implements OnInit {
   }
 
   fichar(username) {
+    this.dataFichada = '';
+    this.date = this.data.data;
     username = username.split(' ');
-    this.data.guardarRegistros(username[0]);
+    const user = username[0] + '_' + username[1];
+    this.data.guardarRegistros(user);
   }
 
   mostrarFichadas(username){
     this.dataFichada = '';
     username = username.split(' ');
-    this.data.mostrarRegistros(username[0]);
-    console.log(this.data.dataFichada);
+    const user = username[0] + '_' + username[1];
+    this.data.mostrarRegistros(user);
     this.dataFichada = JSON.stringify(this.data.dataFichada);
-    this.fichadaArray = this.dataFichada.split(':');
+    this.dataFichada = this.dataFichada.substr(1, this.dataFichada.length-1);
+    console.log(this.dataFichada);
+    this.fichadaArray = this.dataFichada.split(',');
   }
 
   async presentAlert() {
+
     const alert = await this.alertController.create({
       header: 'Info',
-      subHeader: 'Succesfully clock in',
-      message: 'You clocked in successfully',
+      subHeader: `'Succesfully clock in'`,
+      message: `You clocked in successfully at ${this.date}`,
       buttons: ['OK'],
     });
-
     await alert.present();
   }
 
