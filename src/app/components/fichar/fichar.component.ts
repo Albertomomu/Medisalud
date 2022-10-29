@@ -5,11 +5,11 @@ import { DataServices } from 'src/app/services/data.service';
 import { AlertController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-principal',
-  templateUrl: './principal.component.html',
-  styleUrls: ['./principal.component.scss'],
+  selector: 'app-fichar',
+  templateUrl: './fichar.component.html',
+  styleUrls: ['./fichar.component.scss'],
 })
-export class PrincipalComponent implements OnInit {
+export class FicharComponent implements OnInit {
 
   @Input() fichadaArray = [];
   date: string;
@@ -55,5 +55,4 @@ export class PrincipalComponent implements OnInit {
     });
     await alert.present();
   }
-
 }

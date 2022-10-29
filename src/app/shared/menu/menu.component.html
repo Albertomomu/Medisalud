@@ -1,0 +1,29 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <ion-list>
+      <ion-item lines="full">
+        <ion-icon slot="start" name="moon"></ion-icon>
+        <ion-label>
+          Dark theme
+        </ion-label>
+        <ion-toggle id="themeToggle" slot="end" (ionChange)="onToggleColorTheme($event)"></ion-toggle>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-menu-button [routerLink]="['/principal']">
+          Principal
+        </ion-menu-button>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-menu-button [routerLink]="['/fichar']">
+          Fichar
+        </ion-menu-button>
+      </ion-item>
+    </ion-list>
+    <ion-button color="danger" expand="block" class="ion-margin-top" (click)="logout()">Log out</ion-button>
+  </ion-content>
+</ion-menu>

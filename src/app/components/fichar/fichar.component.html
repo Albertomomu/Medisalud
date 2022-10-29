@@ -1,0 +1,32 @@
+<app-menu></app-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Hola, {{user.displayName}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <div class="ion-padding">
+      <ion-datetime locale="es-ES"></ion-datetime>
+    </div>
+    <ion-button expand="block" size="medium" (click)="[fichar(user.displayName),presentAlert()]">
+      Fichar
+    </ion-button>
+    <ion-button expand="block" size="medium"  (click)="mostrarFichadas(user.displayName)">
+      Ver fichadas
+    </ion-button> 
+<!--     <ion-item button class="ion-margin-top" routerLink="/ver-fichadas/" (click)="mostrarFichadas(user.displayName)">
+      <ion-label>Ver fichadas</ion-label>
+    </ion-item> -->
+    <div *ngIf="dataFichada">
+      <div *ngFor="let fichada of fichadaArray" class="ion-margin-top">
+        <ion-list lines="full">
+          <ion-item>{{fichada.substring(24,fichada.length - 1)}}</ion-item>
+        </ion-list>
+      </div>
+    </div>
+  </ion-content>
+</div>
