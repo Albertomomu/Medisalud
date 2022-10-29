@@ -6,20 +6,20 @@
   </ion-header>
   <ion-content class="ion-padding">
     <ion-list>
-      <ion-item lines="full">
+      <ion-item lines="full" routerDirection="root">
         <ion-icon slot="start" name="moon"></ion-icon>
         <ion-label>
           Dark theme
         </ion-label>
         <ion-toggle id="themeToggle" slot="end" (ionChange)="onToggleColorTheme($event)"></ion-toggle>
       </ion-item>
-      <ion-item lines="full">
-        <ion-menu-button [routerLink]="['/principal']">
+      <ion-item lines="full" routerDirection="root" [routerLink]="['/principal']">
+        <ion-menu-button>
           Principal
         </ion-menu-button>
       </ion-item>
-      <ion-item lines="full">
-        <ion-menu-button [routerLink]="['/fichar']">
+      <ion-item lines="full" routerDirection="root" [routerLink]="['/fichar']">
+        <ion-menu-button>
           Fichar
         </ion-menu-button>
       </ion-item>
