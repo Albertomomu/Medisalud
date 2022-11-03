@@ -30,10 +30,10 @@ export class FicharComponent implements OnInit {
 
   fichar(username) {
     this.dataFichada = '';
-    this.date = this.data.data;
     username = username.split(' ');
     const user = username[0] + '_' + username[1];
     this.data.guardarRegistros(user);
+    this.date = this.data.data;
   }
 
   mostrarFichadas(username){
@@ -46,6 +46,8 @@ export class FicharComponent implements OnInit {
     this.dataFichada = this.dataFichada.slice(0, this.dataFichada.length -1);
     this.fichadaArray = this.dataFichada.split(',');
     this.fichadaArray = this.fichadaArray.reverse();
+    console.log(this.fichadaArray);
+    console.log(this.dataFichada);
   }
 
   async presentAlert() {
