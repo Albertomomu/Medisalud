@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -7,8 +6,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatComponent implements OnInit {
 
+  name = '';
+  msgVal = '';
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+
+
+  }
+
+  getValue() {
+    console.log(this.name);
+  }
 
 }
