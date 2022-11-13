@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { ChatService } from 'src/app/services/chat.service';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatComponent implements OnInit {
 
+  auth = this.userService.getAuth();
+  user = this.auth.currentUser;
   name = '';
   msgVal = '';
 
-  constructor() { }
+  constructor(
+    private chatService: ChatService,
+    private userService: UserService,
+    private alertController: AlertController,
+    private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
 
@@ -17,8 +26,11 @@ export class ChatComponent implements OnInit {
 
   }
 
-  getValue() {
-    console.log(this.name);
+  getValue(username) {
+    username = username.split(' ');
+    const user = username[0] + '_' + username[1];
+    this.chatService.guardarMensaje(user, this.name);
+    this.name = '';
   }
 
 }
