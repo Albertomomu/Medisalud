@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { Router } from '@angular/router';
 import { DataServices } from 'src/app/services/data.service';
 import { AlertController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-fichar',
@@ -21,7 +21,6 @@ export class FicharComponent implements OnInit {
 
   constructor(
     private userService: UserService ,
-    private router: Router,
     private data: DataServices,
     private alertController: AlertController,
     private loadingCtrl: LoadingController) { }
@@ -47,7 +46,6 @@ export class FicharComponent implements OnInit {
     this.fichadaArray = this.dataFichada.split(',');
     this.fichadaArray = this.fichadaArray.reverse();
     console.log(this.fichadaArray);
-    console.log(this.dataFichada);
   }
 
   async presentAlert() {

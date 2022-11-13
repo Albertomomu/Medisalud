@@ -27,14 +27,15 @@ constructor(private http: HttpClient){}
         this.data = date + ' - ' + hour + ' - Estado: ' + this.msj;
         this.http.post('https://lowgames-e327f-default-rtdb.europe-west1.firebasedatabase.app/fichar/' + username + '.json',
         JSON.stringify(this.data)).subscribe(
-            response => console.log('Guardado'),
+            response => console.log(response),
             error => console.log(error)
         );
     }
 
     mostrarRegistros( username: string) {
-        this.http.get('https://lowgames-e327f-default-rtdb.europe-west1.firebasedatabase.app/fichar/' + username + '.json')
+        return this.http.get('https://lowgames-e327f-default-rtdb.europe-west1.firebasedatabase.app/fichar/' + username + '.json')
         .subscribe(data => {
+            console.log(data);
             this.dataFichada = data;
         });
     }

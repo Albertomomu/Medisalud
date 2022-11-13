@@ -18,6 +18,11 @@
             Fichar
         </ion-menu-button>
       </ion-item>
+      <ion-item lines="full" routerDirection="root" [routerLink]="['/chat']">
+        <ion-menu-button>
+            Chat
+        </ion-menu-button>
+      </ion-item>
     </ion-list>
     <ion-button color="danger" expand="block" class="ion-margin-top" (click)="logout()">Log out</ion-button>
   </ion-content>

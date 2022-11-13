@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { VerFichadasComponent } from './components/ver-fichadas/ver-fichadas.component';
 import { FicharComponent } from './components/fichar/fichar.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'principal', component: PrincipalComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))},
   {path: 'ver-fichadas', component: VerFichadasComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))},
-  {path: 'fichar', component: FicharComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))}
+  {path: 'fichar', component: FicharComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))},
+  {path: 'chat', component: ChatComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))}
 ];
 
 @NgModule({

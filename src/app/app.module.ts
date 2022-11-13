@@ -18,9 +18,11 @@ import { PrincipalComponent } from './components/principal/principal.component';
 import { VerFichadasComponent } from './components/ver-fichadas/ver-fichadas.component';
 import { FicharComponent } from './components/fichar/fichar.component';
 import { MenuComponent } from './shared/menu/menu.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, LoginComponent, PrincipalComponent, VerFichadasComponent, FicharComponent, MenuComponent],
+  declarations: [AppComponent, RegisterComponent, LoginComponent, PrincipalComponent,
+                 VerFichadasComponent, FicharComponent, MenuComponent, ChatComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth())],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
