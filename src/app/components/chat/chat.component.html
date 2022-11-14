@@ -18,5 +18,12 @@
     <ion-item>
       <ion-input placeholder="Enter text" [(ngModel)]="name" (keyup.enter)="getValue(user.displayName)"></ion-input>
     </ion-item>
+    <div *ngIf="messages">
+      <div *ngFor="let message of messages" class="ion-margin-top">
+        <ion-list lines="full">
+          <ion-item>{{message}}</ion-item>
+        </ion-list>
+      </div>
+    </div>
   </ion-content>
 </div>

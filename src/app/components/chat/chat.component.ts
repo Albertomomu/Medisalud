@@ -13,16 +13,17 @@ export class ChatComponent implements OnInit {
   user = this.auth.currentUser;
   name = '';
   msgVal = '';
+  messages: any = [];
 
   constructor(
     private chatService: ChatService,
-    private userService: UserService,
-    private alertController: AlertController,
-    private loadingCtrl: LoadingController) { }
+    private userService: UserService) { }
 
   ngOnInit() {
 
-
+    this.chatService.mostrarMensajes();
+    this.messages = this.chatService.messages;
+    console.log(this.messages);
 
   }
 

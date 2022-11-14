@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { DataServices } from 'src/app/services/data.service';
 import { AlertController } from '@ionic/angular';
@@ -12,11 +12,11 @@ import { LoadingController } from '@ionic/angular';
 export class FicharComponent implements OnInit {
 
   @Input() fichadaArray = [];
+  @Output() dataFichada = '';
   date: string;
   type: 'string';
   auth = this.userService.getAuth();
   user = this.auth.currentUser;
-  dataFichada = '';
 
   constructor(
     private userService: UserService ,
@@ -44,7 +44,6 @@ export class FicharComponent implements OnInit {
     this.dataFichada = this.dataFichada.slice(0, this.dataFichada.length -1);
     this.fichadaArray = this.dataFichada.split(',');
     this.fichadaArray = this.fichadaArray.reverse();
-    console.log(this.fichadaArray);
   }
 
   async presentAlert() {

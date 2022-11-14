@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { getDatabase, ref, onValue} from 'firebase/database';
 
 @Injectable({
     providedIn: 'root'
@@ -31,12 +32,11 @@ constructor(private http: HttpClient){}
             error => console.log(error)
         );
     }
-
     mostrarRegistros( username: string) {
-        return this.http.get('https://lowgames-e327f-default-rtdb.europe-west1.firebasedatabase.app/fichar/' + username + '.json')
-        .subscribe(data => {
-            console.log(data);
-            this.dataFichada = data;
+        const db = getDatabase();
+        const showRegistersRef = ref(db, 'fichar/' + username);
+        onValue(showRegistersRef, (snapshot) => {
+            this.dataFichada = snapshot.val();
         });
     }
 
