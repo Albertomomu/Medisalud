@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { getDatabase, ref, onValue } from 'firebase/database';
 import { ChatService } from 'src/app/services/chat.service';
 import { UserService } from 'src/app/services/user.service';
 @Component({
@@ -14,6 +15,7 @@ export class ChatComponent implements OnInit {
   name = '';
   msgVal = '';
   messages: any = [];
+  messagesWriter: any = [];
 
   constructor(
     private chatService: ChatService,
@@ -21,10 +23,15 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
 
-    this.chatService.mostrarMensajes();
-    this.messages = this.chatService.messages;
-    console.log(this.messages);
-
+    const db = getDatabase();
+    const showMessagesRef = ref(db, 'mensajes/');
+    onValue(showMessagesRef, (snapshot) => {
+        snapshot.forEach((childSnapshot) =>{
+          this.messages.push(childSnapshot.val().content);
+          this.messagesWriter.push(childSnapshot.val().user);
+          console.log(this.messagesWriter);
+        });
+    });
   }
 
   getValue(username) {

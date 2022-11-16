@@ -21,14 +21,6 @@ export class ChatService {
         );
     } */
 
-    mostrarMensajes(){
-        const db = getDatabase();
-        const showMessagesRef = ref(db, 'mensajes/');
-        onValue(showMessagesRef, (snapshot) => {
-            this.messages = snapshot.val();
-        });
-    }
-
     guardarMensaje(user, content) {
         const db = getDatabase();
         push(ref(db, 'mensajes/'), {

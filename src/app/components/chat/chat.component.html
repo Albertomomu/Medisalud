@@ -15,7 +15,7 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <ion-item>
+    <ion-item class="textBottom">
       <ion-input placeholder="Enter text" [(ngModel)]="name" (keyup.enter)="getValue(user.displayName)"></ion-input>
     </ion-item>
     <div *ngIf="messages">
