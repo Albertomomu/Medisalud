@@ -35,6 +35,7 @@ export class ChatComponent implements OnInit {
   }
 
   getValue(username) {
+    this.messages = [];
     username = username.split(' ');
     const user = username[0] + '_' + username[1];
     this.chatService.guardarMensaje(user, this.name);
