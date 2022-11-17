@@ -2,8 +2,9 @@
     box-sizing: border-box;
     position: absolute;
     bottom: 0;
-    border-top: 1px solid black;
-    width: 100%;
+    left: 0;
+    border-top: 0px solid black;
+    width: 100%;   
 }
 
 .message {
@@ -24,4 +25,11 @@
     align-self: flex-end;
     background-color: green;
     color: white;
+}
+
+.inputText {
+    background-color: rgb(211, 211, 211);
+    margin: 0 auto;
+    border-radius: 36px;
+    padding: 5px 25px !important;
 }

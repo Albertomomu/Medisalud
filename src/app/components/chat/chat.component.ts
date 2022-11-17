@@ -29,7 +29,6 @@ export class ChatComponent implements OnInit {
         snapshot.forEach((childSnapshot) =>{
           this.messages.push(childSnapshot.val().content);
           this.messagesWriter.push(childSnapshot.val().user);
-          console.log(this.messagesWriter);
         });
     });
   }
