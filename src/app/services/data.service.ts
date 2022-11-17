@@ -9,21 +9,26 @@ export class DataServices {
 
     dataFichada: any = '';
     data: any = '';
-    estado = false;
+    estado: any = '';
     msj = '';
 
 constructor(private http: HttpClient){}
 
     guardarRegistros( username: string) {
-        this.msj = '';
+        const db = getDatabase();
+        const showRegistersRef = ref(db, 'fichar/' + username);
+        onValue(showRegistersRef, (snapshot) => {
+            const estado = snapshot.val();
+            this.estado = estado[Object.keys(estado)[Object.keys(estado).length - 1]];
+        });
         const hour = new Date().toLocaleTimeString('es-ES');
         const date = new Date().toLocaleDateString('es-ES');
-        if(this.estado === false){
-            this.estado = true;
-            this.msj = 'Entrada';
-        }else{
-            this.estado = false;
+        if(this.estado.includes('Entrada')){
             this.msj = 'Salida';
+            console.log(this.msj);
+        }else{
+            this.msj = 'Entrada';
+            console.log(this.msj);
         }
         this.data = date + ' - ' + hour + ' - Estado: ' + this.msj;
         this.http.post('https://lowgames-e327f-default-rtdb.europe-west1.firebasedatabase.app/fichar/' + username + '.json',
