@@ -21,7 +21,7 @@
     <div *ngIf="messages" class="ion-padding-bottom">
       <div *ngFor="let message of messages" class="ion-margin-top">
         <ion-list lines="full">
-          <div class="message me">{{message}}</div>
+          <div class="message me" [ngClass]="">{{message.message}}</div>
         </ion-list>
       </div>
     </div>

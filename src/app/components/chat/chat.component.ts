@@ -28,7 +28,11 @@ export class ChatComponent implements OnInit {
     const showMessagesRef = ref(db, 'mensajes/');
     onValue(showMessagesRef, (snapshot) => {
         snapshot.forEach((childSnapshot) =>{
-          this.messages.push(childSnapshot.val().content);
+          const complete = {
+            user: childSnapshot.val().user,
+            message: childSnapshot.val().content
+          };
+          this.messages.push(complete);
           this.messagesWriter.push(childSnapshot.val().user);
         });
     });
