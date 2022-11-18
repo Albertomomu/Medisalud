@@ -3,6 +3,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { ChatService } from 'src/app/services/chat.service';
 import { UserService } from 'src/app/services/user.service';
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',

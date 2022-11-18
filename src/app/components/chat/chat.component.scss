@@ -1,6 +1,7 @@
 .textBottom{
     box-sizing: border-box;
-    position: absolute;
+    position: fixed;
+    z-index: 999;
     bottom: 0;
     left: 0;
     border-top: 0px solid black;
@@ -32,4 +33,10 @@
     margin: 0 auto;
     border-radius: 36px;
     padding: 5px 25px !important;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.ion-padding-bottom {
+    padding-bottom: 60px;
 }

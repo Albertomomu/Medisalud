@@ -18,7 +18,7 @@
     <ion-item class="textBottom">
       <ion-input class="inputText" placeholder="Enter text" [(ngModel)]="name" (keyup.enter)="getValue(user.displayName)"></ion-input>
     </ion-item>
-    <div *ngIf="messages">
+    <div *ngIf="messages" class="ion-padding-bottom">
       <div *ngFor="let message of messages" class="ion-margin-top">
         <ion-list lines="full">
           <div class="message me">{{message}}</div>
