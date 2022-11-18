@@ -23,7 +23,7 @@ export class ChatComponent implements OnInit {
     private userService: UserService) { }
 
   ngOnInit() {
-
+    console.log(this.user);
     const db = getDatabase();
     const showMessagesRef = ref(db, 'mensajes/');
     onValue(showMessagesRef, (snapshot) => {

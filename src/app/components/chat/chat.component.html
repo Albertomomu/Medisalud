@@ -21,7 +21,7 @@
     <div *ngIf="messages" class="ion-padding-bottom">
       <div *ngFor="let message of messages" class="ion-margin-top">
         <ion-list lines="full">
-          <div class="message me" [ngClass]="">{{message.message}}</div>
+          <div class="message" [ngClass]="message.user === 'Alberto_Moreno' ? 'me' : 'you'">{{message.message}}</div>
         </ion-list>
       </div>
     </div>
