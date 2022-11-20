@@ -8,22 +8,44 @@
     width: 100%;
 }
 
+.completeMessage{
+    display: flex;
+    flex-direction: column;
+    float: right;
+    max-width: 50%;
+}
+
 .message {
     border-radius: 5px;
     margin: 0.2em 0;
     padding: 0.5em;
-    max-width: 50%;
+    max-width: 100%;
     border-radius: 16px;
+    min-height: 100%vw;
+}
+
+.align-left{
+    text-align: left;
+}
+
+.align-right{
+    text-align: right;
+}
+
+.left{
+    display: flex;
+    justify-content: flex-start;
 }
 
 .me {
-    align-self: flex-start;
     background-color: #0084FF;
     color: white;
+    float: right;
+    width: 100%;
 }
   
 .you {
-    align-self: flex-end;
+    float: left !important;
     background-color: green;
     color: white;
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import {UserService } from 'src/app/services/user.service';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -10,20 +11,58 @@ import {UserService } from 'src/app/services/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router, private alertController: AlertController) { }
+  isSubmitted = false;
 
-  ngOnInit() {}
+/*   registerForm: FormGroup = new FormGroup({
+    name: ['', [Validators.required, Validators.minLength(2)]],
+    email: new FormControl(''),
+    password: new FormControl('')
+  }); */
+  registerForm: FormGroup;
 
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private alertController: AlertController,
+    public formBuilder: FormBuilder) { }
+
+    get errorControl() {
+      return this.registerForm.controls;
+    }
+
+  ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+    });
+  }
+
+  submitForm() {
+    this.isSubmitted = true;
+    if (!this.registerForm.valid) {
+      console.log('Please provide all the required values!');
+      return false;
+    } else {
+      console.log(this.registerForm.value);
+    }
+  }
 
   registrarUser() {
     const inputPass = (document.getElementById('password') as HTMLInputElement).value;
     const inputEmail = (document.getElementById('email') as HTMLInputElement).value;
     this.userService.register(inputEmail,inputPass).
     then(response => {
+      console.log(response);
       this.presentAlert();
       this.router.navigate(['/login']);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      const errorCode = err.code;
+      if(errorCode === 'auth/email-already-in-use'){
+        const mailError = 'Email is already in use';
+      }
+    });
   }
 
   async presentAlert() {

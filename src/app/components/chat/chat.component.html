@@ -14,16 +14,19 @@
       <ion-title>Hola</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content class="ion-padding">
-    <ion-item class="textBottom">
-      <ion-input class="inputText" placeholder="Enter text" [(ngModel)]="name" (keyup.enter)="getValue(user.displayName)"></ion-input>
-    </ion-item>
+  <ion-content class="ion-padding" #content [scrollEvents]="true">
     <div *ngIf="messages" class="ion-padding-bottom">
       <div *ngFor="let message of messages" class="ion-margin-top">
-        <ion-list lines="full">
-          <div class="message" [ngClass]="message.user === 'Alberto_Moreno' ? 'me' : 'you'">{{message.message}}</div>
+        <ion-list lines="full" [ngClass]="message.id !== id ? 'left' : ''">
+          <div class="completeMessage">
+            <p style="font-size: 10px;float:right;" [ngClass]="message.id !== id ? 'align-left' : 'align-right'">{{message.user}}</p>
+            <div class="message" [ngClass]="message.id === id ? 'me' : 'you'">{{message.message}}</div>
+          </div>
         </ion-list>
       </div>
     </div>
+    <ion-item class="textBottom">
+      <ion-input class="inputText" placeholder="Enter text" [(ngModel)]="name" (keyup.enter)="[getValue(), scrollToBottom()]"></ion-input>
+    </ion-item>
   </ion-content>
 </div>

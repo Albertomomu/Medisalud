@@ -21,12 +21,15 @@ export class ChatService {
         );
     } */
 
-    guardarMensaje(user, content) {
+    guardarMensaje(id, user, content) {
         const db = getDatabase();
-        push(ref(db, 'mensajes/'), {
-          user,
-          content
-        });
+        if(content != ""){
+            push(ref(db, 'mensajes/'), {
+                id,
+                user,
+                content
+              });
+        }
     }
 
 };

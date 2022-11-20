@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -24,7 +24,7 @@ import { ChatComponent } from './components/chat/chat.component';
 @NgModule({
   declarations: [AppComponent, RegisterComponent, LoginComponent, PrincipalComponent,
                  VerFichadasComponent, FicharComponent, MenuComponent, ChatComponent],
-  imports: [BrowserModule, FormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth())],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],
