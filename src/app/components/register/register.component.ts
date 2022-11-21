@@ -51,6 +51,10 @@ export class RegisterComponent implements OnInit {
       this.userService.register(inputEmail,inputPassword).
       then(response => {
         console.log(response);
+        const auth = getAuth();
+        updateProfile(auth.currentUser, {
+          displayName: inputName
+        });
         this.presentAlert();
         this.router.navigate(['/login']);
       })
@@ -58,10 +62,6 @@ export class RegisterComponent implements OnInit {
         const errorCode = err.code;
         console.log(errorCode);
       });
-      const auth = getAuth();
-      /* updateProfile(auth.currentUser, {
-        displayName: inputName
-      }); */
     }
   }
 
