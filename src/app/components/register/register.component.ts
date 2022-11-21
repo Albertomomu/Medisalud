@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import {UserService } from 'src/app/services/user.service';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { getAuth, updateProfile } from 'firebase/auth';
 
 @Component({
   selector: 'app-register',
@@ -44,7 +45,23 @@ export class RegisterComponent implements OnInit {
       console.log('Please provide all the required values!');
       return false;
     } else {
-      console.log(this.registerForm.value);
+      const inputName = this.registerForm.value.name;
+      const inputEmail = this.registerForm.value.email;
+      const inputPassword = this.registerForm.value.password;
+      this.userService.register(inputEmail,inputPassword).
+      then(response => {
+        console.log(response);
+        this.presentAlert();
+        this.router.navigate(['/login']);
+      })
+      .catch((err) => {
+        const errorCode = err.code;
+        console.log(errorCode);
+      });
+      const auth = getAuth();
+      /* updateProfile(auth.currentUser, {
+        displayName: inputName
+      }); */
     }
   }
 
