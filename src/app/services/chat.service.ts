@@ -23,7 +23,7 @@ export class ChatService {
 
     guardarMensaje(id, user, content) {
         const db = getDatabase();
-        if(content != ""){
+        if(content !== ''){
             push(ref(db, 'mensajes/'), {
                 id,
                 user,

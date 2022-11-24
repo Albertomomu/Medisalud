@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ChatComponent implements OnInit {
 
   //@ViewChild('content') private content: any;
-  @ViewChild(IonContent) content: IonContent;
+  @ViewChild(IonContent, {static: false}) content: IonContent;
   auth = this.userService.getAuth();
   user = this.auth.currentUser;
   id = this.user.uid;
