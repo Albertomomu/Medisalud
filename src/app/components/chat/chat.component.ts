@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { AlertController, IonContent, LoadingController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonContent } from '@ionic/angular';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { ChatService } from 'src/app/services/chat.service';
 import { UserService } from 'src/app/services/user.service';
