@@ -25,6 +25,11 @@ export class ChatComponent implements OnInit {
     private chatService: ChatService,
     private userService: UserService) { }
 
+
+  ionViewDidEnter() {
+    this.content.scrollToBottom(0);
+  }
+
   ngOnInit() {
     const db = getDatabase();
     const showMessagesRef = ref(db, 'mensajes/');
