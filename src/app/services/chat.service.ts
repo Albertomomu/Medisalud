@@ -10,7 +10,7 @@ export class ChatService {
 
     messages = [];
 
-    constructor(private http: HttpClient){}
+    constructor(){}
 
 /*     guardarMensaje(username: string, message: string){
         const mess = {username, message};

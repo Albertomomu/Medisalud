@@ -59,6 +59,7 @@ export class ChatComponent implements OnInit {
     this.chatService.guardarMensaje(this.id,this.user.displayName, this.name);
     this.name = '';
     //this.scrollToBottomOnInit();
+    console.log(this.messages);
   }
 
 }
