@@ -37,8 +37,6 @@ export class RaffleComponent implements OnInit {
   }
 
   participate() {
-
-
     if(this.participating === false){
       this.raffleService.ticket(this.userID);
       this.presentAlert();

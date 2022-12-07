@@ -13,20 +13,17 @@
         </ion-label>
         <ion-toggle id="themeToggle" slot="end" (ionChange)="onToggleColorTheme($event)"></ion-toggle>
       </ion-item>
-      <ion-item lines="full" routerDirection="root" [routerLink]="['/fichar']">
-        <ion-menu-button>
-            Fichar
-        </ion-menu-button>
+      <ion-item>
+        <ion-icon name="time" slot="start"></ion-icon>
+        <ion-label routerDirection="root" [routerLink]="['/fichar']">Fichar</ion-label>
       </ion-item>
-      <ion-item lines="full" routerDirection="root" [routerLink]="['/chat']">
-        <ion-menu-button>
-            Chat
-        </ion-menu-button>
+      <ion-item>
+        <ion-icon name="logo-wechat" slot="start"></ion-icon>
+        <ion-label routerDirection="root" [routerLink]="['/chat']">Chat</ion-label>
       </ion-item>
-      <ion-item lines="full" routerDirection="root" [routerLink]="['/raffle']">
-        <ion-menu-button>
-            Raffle
-        </ion-menu-button>
+      <ion-item>
+        <ion-icon name="ticket" slot="start"></ion-icon>
+        <ion-label routerDirection="root" [routerLink]="['/raffle']">Raffle</ion-label>
       </ion-item>
     </ion-list>
     <ion-button color="danger" expand="block" class="ion-margin-top" (click)="logout()">Log out</ion-button>
