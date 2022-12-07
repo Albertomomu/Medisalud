@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { getDatabase } from 'firebase/database';
+import { getDatabase, onValue, ref } from 'firebase/database';
 import { RaffleService } from 'src/app/services/raffle.service';
 import { UserService } from 'src/app/services/user.service';
 import { AlertController } from '@ionic/angular';
@@ -17,7 +17,7 @@ export class RaffleComponent implements OnInit {
   participating = false;
 
   constructor(
-    private raffleSerrvice: RaffleService,
+    private raffleService: RaffleService,
     private alertController: AlertController,
     private userService: UserService
   ) { }
@@ -25,7 +25,19 @@ export class RaffleComponent implements OnInit {
   ngOnInit() {}
 
   participate() {
-    this.raffleSerrvice.ticket(this.userID);
+
+    const db = getDatabase();
+    const showParticipants = ref(db, 'raffle/');
+    onValue(showParticipants, (snapshot) => {
+        snapshot.forEach((childSnapshot) =>{
+          if(childSnapshot.val().userID === this.userID){
+            this.participating = true;
+          }
+        });
+    });
+    if(this.participating === false){
+      this.raffleService.ticket(this.userID);
+    }
   }
 
   async presentAlert() {
