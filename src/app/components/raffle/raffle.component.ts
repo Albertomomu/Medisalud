@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { getDatabase } from 'firebase/database';
 import { RaffleService } from 'src/app/services/raffle.service';
 import { UserService } from 'src/app/services/user.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-raffle',
@@ -17,14 +18,25 @@ export class RaffleComponent implements OnInit {
 
   constructor(
     private raffleSerrvice: RaffleService,
+    private alertController: AlertController,
     private userService: UserService
   ) { }
 
   ngOnInit() {}
 
-  participate(username) {
-    const db = getDatabase();
+  participate() {
+    this.raffleSerrvice.ticket(this.userID);
+  }
 
+  async presentAlert() {
+
+    const alert = await this.alertController.create({
+      header: 'Info',
+      subHeader: `'Well done ${this.user.displayName}'`,
+      message: `Now you are signed up`,
+      buttons: ['OK'],
+    });
+    await alert.present();
   }
 
 }
