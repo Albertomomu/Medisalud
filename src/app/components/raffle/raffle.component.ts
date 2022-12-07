@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { getDatabase } from 'firebase/database';
+import { RaffleService } from 'src/app/services/raffle.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-raffle',
@@ -7,8 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RaffleComponent implements OnInit {
 
-  constructor() { }
+  auth = this.userService.getAuth();
+  user = this.auth.currentUser;
+  userID = this.user.uid;
+  participating = false;
+
+  constructor(
+    private raffleSerrvice: RaffleService,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {}
+
+  participate(username) {
+    const db = getDatabase();
+
+  }
 
 }
