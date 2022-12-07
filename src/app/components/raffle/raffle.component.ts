@@ -22,21 +22,28 @@ export class RaffleComponent implements OnInit {
     private userService: UserService
   ) { }
 
-  ngOnInit() {}
-
-  participate() {
-
+  ngOnInit() {
+    this.participating = false;
     const db = getDatabase();
     const showParticipants = ref(db, 'raffle/');
     onValue(showParticipants, (snapshot) => {
         snapshot.forEach((childSnapshot) =>{
           if(childSnapshot.val().userID === this.userID){
             this.participating = true;
+            console.log(childSnapshot.val().userID);
           }
         });
     });
+  }
+
+  participate() {
+
+
     if(this.participating === false){
       this.raffleService.ticket(this.userID);
+      this.presentAlert();
+    }else{
+      this.presentAlert2();
     }
   }
 
@@ -46,6 +53,17 @@ export class RaffleComponent implements OnInit {
       header: 'Info',
       subHeader: `'Well done ${this.user.displayName}'`,
       message: `Now you are signed up`,
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
+  async presentAlert2() {
+
+    const alert = await this.alertController.create({
+      header: 'Info',
+      subHeader: `'Signed up failed'`,
+      message: `You are already signed up for this raffle`,
       buttons: ['OK'],
     });
     await alert.present();
