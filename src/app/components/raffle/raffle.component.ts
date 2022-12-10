@@ -54,6 +54,10 @@ export class RaffleComponent implements OnInit {
     }
   }
 
+  raffle(){
+    this.raffleService.raffle();
+  }
+
   async presentAlert() {
 
     const alert = await this.alertController.create({
