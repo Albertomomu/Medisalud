@@ -10,6 +10,7 @@
       <div class="raffle">
         <img src="../../../assets/images/tickets.png" alt="">
         <p class="raffle-text">Enter in the raffle of a mattress</p>
+        <p *ngIf="!hasEnded()" class="raffle-text"><ion-text color="danger">Raffle ends: {{endDate | date}}</ion-text></p>
         <ion-button *ngIf="!hasEnded()" (click)="participate()">Join our raffle</ion-button>
         <p class="ion-text-center" *ngIf="hasEnded()"><ion-text color="danger" weight="bold">*Sorry, the raffle has ended.</ion-text></p>
         <ion-button *ngIf="admin && hasEnded()"color="danger" (click)="raffle()">Raffle now</ion-button>

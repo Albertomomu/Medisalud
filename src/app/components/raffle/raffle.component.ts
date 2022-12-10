@@ -28,7 +28,6 @@ export class RaffleComponent implements OnInit {
 
   ngOnInit() {
 
-
     if(this.userID === '1TFEAGKXhFVx14BykPh9pdOVTaz1'){
       this.admin = true;
     }
@@ -37,7 +36,6 @@ export class RaffleComponent implements OnInit {
     const endDate = ref(db, 'raffle');
     onValue(endDate, (snapshot) => {
       this.endDate = new Date(snapshot.val().endTime);
-      console.log(this.endDate);
     });
 
     const showParticipants = ref(db, 'raffle/participants');
