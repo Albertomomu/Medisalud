@@ -17,7 +17,7 @@ export class RaffleComponent implements OnInit {
   userID = this.user.uid;
   participating = false;
   admin = false;
-  endDate: Date = new Date(2022, 11, 10);
+  endDate: Date;
 
   constructor(
     private raffleService: RaffleService,
@@ -28,11 +28,19 @@ export class RaffleComponent implements OnInit {
 
   ngOnInit() {
 
+
     if(this.userID === '1TFEAGKXhFVx14BykPh9pdOVTaz1'){
       this.admin = true;
     }
     this.participating = false;
     const db = getDatabase();
+
+    const endDate = ref(db, 'raffle');
+    onValue(endDate, (snapshot) => {
+      this.endDate = new Date(snapshot.val().endTime);
+      console.log(this.endDate);
+    });
+
     const showParticipants = ref(db, 'raffle/participants');
     onValue(showParticipants, (snapshot) => {
         snapshot.forEach((childSnapshot) =>{

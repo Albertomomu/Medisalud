@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
+import { getDatabase } from 'firebase/database';
 
 @Component({
   selector: 'app-modal-example',
@@ -16,6 +17,7 @@ export class RaffleSettingsComponent {
   }
 
   confirm() {
-    return this.modalCtrl.dismiss(this.selectedTime, 'confirm');
+    /* return this.modalCtrl.dismiss(this.selectedTime, 'confirm'); */
+    const db = getDatabase();
   }
 }
