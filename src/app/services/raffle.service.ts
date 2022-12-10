@@ -25,7 +25,8 @@ export class RaffleService {
         this.participants.push(childSnapshot.val().userID);
       });
     });
-    console.log(this.participants);
+    //NOT WORKING
+    const rand = Math.floor(Math.random() * this.participants.length);
   }
 
 }
