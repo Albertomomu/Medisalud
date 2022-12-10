@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
-import { getDatabase } from 'firebase/database';
+import { getDatabase, onValue, ref, update, set } from 'firebase/database';
 
 @Component({
   selector: 'app-modal-example',
   templateUrl: 'raffle-settings.component.html',
 })
 export class RaffleSettingsComponent {
-  selectedTime: Date;
+  selectedTime: any;
 
   constructor(private modalCtrl: ModalController) {}
 
@@ -17,7 +17,11 @@ export class RaffleSettingsComponent {
   }
 
   confirm() {
-    /* return this.modalCtrl.dismiss(this.selectedTime, 'confirm'); */
+
     const db = getDatabase();
+    set(ref(db, 'raffle'), {
+    endTime: this.selectedTime.split('T')[0]
+  });
+  return this.modalCtrl.dismiss('confirm');
   }
 }
