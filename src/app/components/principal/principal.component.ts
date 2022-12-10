@@ -24,7 +24,8 @@ export class PrincipalComponent implements OnInit {
     private data: DataServices,
     private alertController: AlertController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   fichar(username) {
     this.dataFichada = '';
