@@ -21,10 +21,11 @@ import { FicharComponent } from './components/fichar/fichar.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { RaffleComponent } from './components/raffle/raffle.component';
+import { RaffleSettingsComponent } from './components/raffle-settings/raffle-settings.component';
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent, LoginComponent, PrincipalComponent,
-                 VerFichadasComponent, FicharComponent, MenuComponent, ChatComponent, RaffleComponent],
+                 VerFichadasComponent, FicharComponent, MenuComponent, ChatComponent, RaffleComponent, RaffleSettingsComponent],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth())],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],

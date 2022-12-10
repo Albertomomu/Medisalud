@@ -12,14 +12,14 @@ export class RaffleService {
 
   ticket(userID) {
     const db = getDatabase();
-    push(ref(db, 'raffle/'), {
+    push(ref(db, 'raffle/participants'), {
       userID
     });
   }
 
   raffle() {
     const db = getDatabase();
-    const raffleParticipants = ref(db, 'raffle');
+    const raffleParticipants = ref(db, 'raffle/participants');
     onValue(raffleParticipants, (snapshot) => {
       snapshot.forEach((childSnapshot) => {
         this.participants.push(childSnapshot.val().userID);

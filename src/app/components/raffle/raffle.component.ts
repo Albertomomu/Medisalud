@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { getDatabase, onValue, ref } from 'firebase/database';
 import { RaffleService } from 'src/app/services/raffle.service';
 import { UserService } from 'src/app/services/user.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
+import { RaffleSettingsComponent } from '../raffle-settings/raffle-settings.component';
 
 @Component({
   selector: 'app-raffle',
@@ -21,7 +22,8 @@ export class RaffleComponent implements OnInit {
   constructor(
     private raffleService: RaffleService,
     private alertController: AlertController,
-    private userService: UserService
+    private userService: UserService,
+    private modalCtrl: ModalController
   ) { }
 
   ngOnInit() {
@@ -31,7 +33,7 @@ export class RaffleComponent implements OnInit {
     }
     this.participating = false;
     const db = getDatabase();
-    const showParticipants = ref(db, 'raffle/');
+    const showParticipants = ref(db, 'raffle/participants');
     onValue(showParticipants, (snapshot) => {
         snapshot.forEach((childSnapshot) =>{
           if(childSnapshot.val().userID === this.userID){
@@ -39,6 +41,19 @@ export class RaffleComponent implements OnInit {
           }
         });
     });
+  }
+
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: RaffleSettingsComponent,
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirm') {
+
+    }
   }
 
   hasEnded() {

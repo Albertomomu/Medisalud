@@ -14,5 +14,6 @@
         <p class="ion-text-center" *ngIf="hasEnded()"><ion-text color="danger" weight="bold">*Sorry, the raffle has ended.</ion-text></p>
         <ion-button *ngIf="admin && hasEnded()"color="danger" (click)="raffle()">Raffle now</ion-button>
       </div>
-    </div>
+      <ion-button *ngIf="admin" (click)="openModal()"><ion-icon name="settings-outline"></ion-icon></ion-button>
+    </div> 
   </ion-content>
