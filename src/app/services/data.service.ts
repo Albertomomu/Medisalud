@@ -37,12 +37,15 @@ constructor(private http: HttpClient){}
             error => console.log(error)
         );
     }
-    mostrarRegistros( username: string) {
+    /* mostrarRegistros( username: string) {
         const db = getDatabase();
         const showRegistersRef = ref(db, 'fichar/' + username);
         onValue(showRegistersRef, (snapshot) => {
             this.dataFichada = snapshot.val();
         });
+    } */
+    mostrarRegistros(){
+
     }
 
 }

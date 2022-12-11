@@ -20,7 +20,7 @@ export class VerFichadasComponent implements OnInit {
 
   ngOnInit() {}
 
-  mostrarFichadas(username){
+/*   mostrarFichadas(username){
     this.dataFichada = '';
     username = username.split(' ');
     const user = username[0] + '_' + username[1];
@@ -30,6 +30,6 @@ export class VerFichadasComponent implements OnInit {
     this.dataFichada = this.dataFichada.slice(0, this.dataFichada.length -1);
     this.fichadaArray = this.dataFichada.split(',');
     console.log(this.dataFichada);
-  }
+  } */
 
 }

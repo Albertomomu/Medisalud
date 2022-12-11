@@ -38,7 +38,7 @@ export class FicharComponent implements OnInit {
     this.date = this.data.data;
   }
 
-  mostrarFichadas(username){
+/*   mostrarFichadas(username){
     this.dataFichada = '';
     username = username.split(' ');
     const user = username[0] + '_' + username[1];
@@ -49,6 +49,10 @@ export class FicharComponent implements OnInit {
     this.fichadaArray = this.dataFichada.split(',');
     this.fichadaArray = this.fichadaArray.reverse();
     console.log(this.dataFichada);
+  } */
+
+  mostrarFichadas(username){
+
   }
 
   async presentAlert() {
