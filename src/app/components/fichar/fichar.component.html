@@ -21,18 +21,30 @@
     <ion-button expand="block" size="medium" (click)="[fichar(user.displayName),presentAlert()]">
       Fichar
     </ion-button>
-    <ion-button expand="block" size="medium" (click)="[mostrarFichadas(user.displayName)]">
+    <ion-button expand="block" size="medium" (click)="[mostrarFichadas(user.displayName), setOpen(true)]">
       Ver fichadas
     </ion-button> 
-<!--     <ion-item button class="ion-margin-top" routerLink="/ver-fichadas/" (click)="mostrarFichadas(user.displayName)">
-      <ion-label>Ver fichadas</ion-label>
-    </ion-item> -->
-    <div *ngIf="dataFichada">
-      <div *ngFor="let fichada of fichadaArray" class="ion-margin-top">
-        <ion-list lines="full">
-          <ion-item>{{fichada.substring(24,fichada.length - 1)}}</ion-item>
-        </ion-list>
-      </div>
-    </div>
+
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Fichadas</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="setOpen(false)">Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <div *ngIf="dataFichada">
+            <div *ngFor="let fichada of fichadaArray; let i = index" class="ion-margin-top" [style.background-color]="i % 2 === 0 ? '#ffffff' : '#ff0000'">
+              <ion-list lines="full">
+                <ion-item>{{fichada.substring(24,fichada.length - 1)}}</ion-item>
+              </ion-list>
+            </div>
+          </div>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </ion-content>
 </div>

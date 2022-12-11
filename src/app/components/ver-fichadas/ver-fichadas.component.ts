@@ -29,6 +29,7 @@ export class VerFichadasComponent implements OnInit {
     this.dataFichada = this.dataFichada.substr(1, this.dataFichada.length-1);
     this.dataFichada = this.dataFichada.slice(0, this.dataFichada.length -1);
     this.fichadaArray = this.dataFichada.split(',');
+    console.log(this.dataFichada);
   }
 
 }
