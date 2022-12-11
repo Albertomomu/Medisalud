@@ -18,6 +18,7 @@ export class RaffleComponent implements OnInit {
   participating = false;
   admin = false;
   endDate: Date;
+  winner = '';
 
   constructor(
     private raffleService: RaffleService,
@@ -46,6 +47,12 @@ export class RaffleComponent implements OnInit {
           }
         });
     });
+    const winner = ref(db, 'raffle');
+    onValue(winner, (snapshot) => {
+        if(snapshot.val().winner !== ''){
+          this.winner = snapshot.val().winner;
+        }
+    });
   }
 
   async openModal() {
@@ -67,7 +74,7 @@ export class RaffleComponent implements OnInit {
 
   participate() {
     if(this.participating === false){
-      this.raffleService.ticket(this.userID);
+      this.raffleService.ticket(this.userID, this.user.displayName);
       this.presentAlert();
     }else{
       this.presentAlert2();
@@ -76,6 +83,7 @@ export class RaffleComponent implements OnInit {
 
   raffle(){
     this.raffleService.raffle();
+    this.winner = this.raffleService.winner;
   }
 
   async presentAlert() {
