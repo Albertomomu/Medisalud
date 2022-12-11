@@ -9,7 +9,7 @@
     <div class="raffle-container">
       <img src="../../../assets/images/logo.svg" alt="" width="90%">
       <div class="raffle">
-        <p *ngIf="winner !== ''">{{winner}}</p>
+        <p *ngIf="winner !== ''" class="winner">The winner is: <br><br><b>{{winner}}</b></p>
         <img src="../../../assets/images/tickets.png" alt="">
         <p class="raffle-text">Enter in the raffle of a mattress</p>
         <p *ngIf="!hasEnded()" class="raffle-text"><ion-text color="danger">Raffle ends: <b>{{endDate | date}}</b></ion-text></p>
