@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { getDatabase, ref, onValue} from 'firebase/database';
+import { getDatabase, ref, onValue, set, get, child} from 'firebase/database';
 
 @Injectable({
     providedIn: 'root'
@@ -8,42 +8,25 @@ import { getDatabase, ref, onValue} from 'firebase/database';
 export class DataServices {
 
     dataFichada: any = '';
-    data: any = '';
+    data: any = {};
     estado: any = '';
     msj = '';
 
 constructor(private http: HttpClient){}
 
-    guardarRegistros( username: string) {
-        const db = getDatabase();
-        const showRegistersRef = ref(db, 'fichar/' + username);
-        onValue(showRegistersRef, (snapshot) => {
-            const estado = snapshot.val();
-            this.estado = estado[Object.keys(estado)[Object.keys(estado).length - 1]];
-        });
-        const hour = new Date().toLocaleTimeString('es-ES');
-        const date = new Date().toLocaleDateString('es-ES');
-        if(this.estado.includes('Entrada')){
-            this.msj = 'Salida';
-            console.log(this.msj);
-        }else{
-            this.msj = 'Entrada';
-            console.log(this.msj);
-        }
-        this.data = date + ' - ' + hour + ' - Estado: ' + this.msj;
-        this.http.post('https://lowgames-e327f-default-rtdb.europe-west1.firebasedatabase.app/fichar/' + username + '.json',
-        JSON.stringify(this.data)).subscribe(
+    guardarRegistros( userID: string) {
+            const hour = new Date().toLocaleTimeString('es-ES');
+              const date = new Date().toLocaleDateString('es-ES');
+              this.data = {
+                  date: date + ' - ' + hour,
+                  estado: 'Entrada'
+              };
+            this.http.post('https://lowgames-e327f-default-rtdb.europe-west1.firebasedatabase.app/fichar/' + userID + '.json',
+            JSON.stringify(this.data)).subscribe(
             response => console.log(response),
             error => console.log(error)
         );
     }
-    /* mostrarRegistros( username: string) {
-        const db = getDatabase();
-        const showRegistersRef = ref(db, 'fichar/' + username);
-        onValue(showRegistersRef, (snapshot) => {
-            this.dataFichada = snapshot.val();
-        });
-    } */
     mostrarRegistros(){
 
     }

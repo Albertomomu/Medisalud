@@ -18,7 +18,7 @@
     <div class="ion-padding">
       <ion-datetime locale="es-ES"></ion-datetime>
     </div>
-    <ion-button expand="block" size="medium" (click)="[fichar(user.displayName),presentAlert()]">
+    <ion-button expand="block" size="medium" (click)="[fichar(user.uid),presentAlert()]">
       Fichar
     </ion-button>
     <ion-button expand="block" size="medium" (click)="[mostrarFichadas(user.displayName), setOpen(true)]">

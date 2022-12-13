@@ -4,7 +4,7 @@ import { DataServices } from 'src/app/services/data.service';
 import { AlertController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 import { IonModal } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core/components';
+import { get, getDatabase, ref, child } from 'firebase/database';
 
 @Component({
   selector: 'app-fichar',
@@ -17,9 +17,11 @@ export class FicharComponent implements OnInit {
   @Input() fichadaArray = [];
   @Output() dataFichada = '';
   date: string;
+  estado: any;
   type: 'string';
   auth = this.userService.getAuth();
   user = this.auth.currentUser;
+  userID = this.user.uid;
   isModalOpen = false;
 
   constructor(
@@ -30,12 +32,10 @@ export class FicharComponent implements OnInit {
 
   ngOnInit() {}
 
-  fichar(username) {
-    this.dataFichada = '';
-    username = username.split(' ');
-    const user = username[0] + '_' + username[1];
-    this.data.guardarRegistros(user);
-    this.date = this.data.data;
+  fichar(userID) {
+    this.data.guardarRegistros(userID);
+    this.date = this.data.data.date;
+    this.estado = this.data.data.estado;
   }
 
 /*   mostrarFichadas(username){
@@ -60,7 +60,7 @@ export class FicharComponent implements OnInit {
     const alert = await this.alertController.create({
       header: 'Info',
       subHeader: `'Succesfully clock in'`,
-      message: `You clocked in successfully at ${this.date}`,
+      message: `You clocked in successfully at ${JSON.stringify(this.date)} - ${JSON.stringify(this.estado)}`,
       buttons: ['OK'],
     });
     await alert.present();
