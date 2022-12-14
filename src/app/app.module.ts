@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -23,15 +23,17 @@ import { ChatComponent } from './components/chat/chat.component';
 import { RaffleComponent } from './components/raffle/raffle.component';
 import { RaffleSettingsComponent } from './components/raffle-settings/raffle-settings.component';
 import { DocumentsComponent } from './components/documents/documents.component';
-import { CalendarComponent } from './components/calendar/calendar.component';
+import { CalendarViewComponent } from './components/calendar/calendar.component';
+
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent, LoginComponent, PrincipalComponent,
                  VerFichadasComponent, FicharComponent, MenuComponent, ChatComponent,
-                 RaffleComponent, RaffleSettingsComponent, DocumentsComponent, CalendarComponent ],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth())],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
+                 RaffleComponent, RaffleSettingsComponent, DocumentsComponent, CalendarViewComponent, ],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule,
+            HttpClientModule, FullCalendarModule,
+            provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth())],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, { provide: LOCALE_ID, useValue: 'es-ES' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

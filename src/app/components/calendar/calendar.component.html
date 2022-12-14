@@ -1,3 +1,13 @@
-<p>
-  calendar works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/principal"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+  <ion-content>
+    <full-calendar
+      [options]="calendarOptions"
+      [events]="eventsPromise | async"
+    ></full-calendar>
+  </ion-content> 

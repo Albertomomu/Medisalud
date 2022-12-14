@@ -9,7 +9,7 @@ import { FicharComponent } from './components/fichar/fichar.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { RaffleComponent } from './components/raffle/raffle.component';
 import { DocumentsComponent } from './components/documents/documents.component';
-import { CalendarComponent } from './components/calendar/calendar.component';
+import { CalendarViewComponent } from './components/calendar/calendar.component';
 
 const routes: Routes = [
   {
@@ -29,7 +29,7 @@ const routes: Routes = [
   {path: 'chat', component: ChatComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))},
   {path: 'raffle', component: RaffleComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))},
   {path: 'documents', component: DocumentsComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))},
-  {path: 'calendar', component: CalendarComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))}
+  {path: 'calendar', component: CalendarViewComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))}
 ];
 
 @NgModule({
