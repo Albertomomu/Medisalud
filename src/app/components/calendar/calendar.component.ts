@@ -3,6 +3,7 @@ import { CalendarOptions, EventInput } from '@fullcalendar/core'; // useful for 
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 
 @Component({
   selector: 'app-calendar',
@@ -12,23 +13,12 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 export class CalendarViewComponent implements OnInit {
 
   calendarOptions: CalendarOptions = {
-
-    plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
-    initialView: 'timeGridDay',
-    dateClick: this.handleDateClick.bind(this), // MUST ensure `this` context is maintained
-    events: [
-    ]
-
+    plugins: [dayGridPlugin, timeGridPlugin, bootstrap5Plugin],
+    initialView: 'dayGridMonth',
   };
-
-  eventsPromise: Promise<EventInput>;
 
   constructor() { }
 
   ngOnInit() {}
-
-  handleDateClick(arg) {
-    alert('date click! ' + arg.dateStr);
-  };
 
 }
