@@ -6,7 +6,18 @@
   </ion-toolbar>
 </ion-header>
   <ion-content class="ion-padding">
-    <full-calendar [options]='calendarOptions'></full-calendar>
-    <ion-button *ngIf="admin" type="submit" expand="block" class="ion-margin-top">Add event</ion-button>
-    <ion-button *ngIf="admin" type="submit" expand="block" class="ion-margin-top">Delete event</ion-button>
+    <full-calendar [options]='calendarOptions'></full-calendar>      
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end" *ngIf="admin">
+      <ion-fab-button>
+        <ion-icon name="chevron-up-circle"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-fab-button (click)="deleteEvent()">
+          <ion-icon name="trash"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button (click)="addEvent()">
+          <ion-icon name="add-circle"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
   </ion-content> 

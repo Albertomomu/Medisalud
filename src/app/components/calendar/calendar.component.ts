@@ -43,4 +43,11 @@ export class CalendarViewComponent implements OnInit {
     console.log(arg.event.title);
   }
 
+  addEvent() {
+  }
+
+  deleteEvent() {
+
+  }
+
 }
