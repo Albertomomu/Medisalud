@@ -5,8 +5,8 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-  <ion-content>
-    <full-calendar [options]='calendarOptions'>
-      
-    </full-calendar>
+  <ion-content class="ion-padding">
+    <full-calendar [options]='calendarOptions'></full-calendar>
+    <ion-button *ngIf="admin" type="submit" expand="block" class="ion-margin-top">Add event</ion-button>
+    <ion-button *ngIf="admin" type="submit" expand="block" class="ion-margin-top">Delete event</ion-button>
   </ion-content> 

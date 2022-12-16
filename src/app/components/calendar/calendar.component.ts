@@ -4,7 +4,8 @@ import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
-import momentPlugin from '@fullcalendar/moment';
+import { UserService } from 'src/app/services/user.service';
+import { getDatabase, onValue, ref } from 'firebase/database';
 
 @Component({
   selector: 'app-calendar',
@@ -13,35 +14,32 @@ import momentPlugin from '@fullcalendar/moment';
 })
 export class CalendarViewComponent implements OnInit {
 
-  presentDays = 0;
-  absentDays = 0;
+  admin = false;
+  auth = this.userService.getAuth();
+  user = this.auth.currentUser;
+  userID = this.user.uid;
   events: any = [
-    { title: 'Present', date: '2022-12-05', color: 'red' },
-    { title: 'Absent', date: '2022-12-24' }
+    { title: 'Cumple', date: '2022-12-05', color: 'red' },
+    { title: 'Fiesta', date: '2022-12-24' }
   ];
 
   calendarOptions: CalendarOptions = {
-    plugins: [dayGridPlugin, timeGridPlugin, bootstrap5Plugin, interactionPlugin, momentPlugin],
+    plugins: [dayGridPlugin, timeGridPlugin, bootstrap5Plugin, interactionPlugin],
     initialView: 'dayGridMonth',
-    eventClick: this.handleDateClick.bind(this),// MUST ensure `this` context is maintained
+    eventClick: this.handleEventClick.bind(this),// MUST ensure `this` context is maintained
     events: this.events
   };
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.events.forEach((e: {[x: string]: string }) => {
-      if(e.title === 'Present'){
-        this.presentDays++;
-      }else{
-        this.absentDays++;
-      }
-    });
-    console.log(this.presentDays);
-    console.log(this.absentDays);
+    if(this.userID === '1TFEAGKXhFVx14BykPh9pdOVTaz1'){
+      this.admin = true;
+    }
   }
 
-  handleDateClick(arg) {
+  handleEventClick(arg) {
+    console.log(arg.event.start);
     console.log(arg.event.title);
   }
 
