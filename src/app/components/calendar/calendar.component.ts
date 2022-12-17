@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarOptions, EventInput } from '@fullcalendar/core'; // useful for typechecking
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import { UserService } from 'src/app/services/user.service';
-import { getDatabase, onValue, ref } from 'firebase/database';
+import { getDatabase, onValue, ref, update } from 'firebase/database';
+import { OverlayEventDetail } from '@ionic/core/components';
+import { IonModal } from '@ionic/angular';
 
 @Component({
   selector: 'app-calendar',
@@ -14,14 +16,12 @@ import { getDatabase, onValue, ref } from 'firebase/database';
 })
 export class CalendarViewComponent implements OnInit {
 
+  @ViewChild(IonModal) modal: IonModal;
   admin = false;
   auth = this.userService.getAuth();
   user = this.auth.currentUser;
   userID = this.user.uid;
-  events: any = [
-    { title: 'Cumple', date: '2022-12-05', color: 'red' },
-    { title: 'Fiesta', date: '2022-12-24' }
-  ];
+  events: any = [];
 
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, timeGridPlugin, bootstrap5Plugin, interactionPlugin],
@@ -42,12 +42,29 @@ export class CalendarViewComponent implements OnInit {
     console.log(arg.event.start);
     console.log(arg.event.title);
   }
-
+  //WORKING
   addEvent() {
+    const db = getDatabase();
+    update(ref(db, 'events'), {title: 'Yiha'});
   }
 
   deleteEvent() {
 
+  }
+
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+    this.addEvent();
+    this.modal.dismiss('confirm');
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+    }
   }
 
 }
