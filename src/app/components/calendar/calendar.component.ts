@@ -29,7 +29,7 @@ export class CalendarViewComponent implements OnInit {
     plugins: [dayGridPlugin, timeGridPlugin, bootstrap5Plugin, interactionPlugin],
     initialView: 'dayGridMonth',
     eventClick: this.handleEventClick.bind(this),// MUST ensure `this` context is maintained
-    events: this.events
+    events: this.events,
   };
 
   constructor(private userService: UserService) { }
