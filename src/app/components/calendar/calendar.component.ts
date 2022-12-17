@@ -5,7 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import { UserService } from 'src/app/services/user.service';
-import { getDatabase, onValue, ref, update } from 'firebase/database';
+import { child, getDatabase, onValue, push, ref, update } from 'firebase/database';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { IonModal } from '@ionic/angular';
 
@@ -43,9 +43,14 @@ export class CalendarViewComponent implements OnInit {
     console.log(arg.event.title);
   }
   //WORKING
-  addEvent() {
+  addEvent(title: string, date: string) {
+    // eslint-disable-next-line object-shorthand
+    const eventData = {title: title, date: date};
     const db = getDatabase();
-    update(ref(db, 'events'), {title: 'Yiha'});
+    const newKey = push(child(ref(db), 'events')).key;
+    const updates = {};
+    updates[newKey] = eventData;
+    update(ref(db, 'events'), updates);
   }
 
   deleteEvent() {
@@ -57,7 +62,7 @@ export class CalendarViewComponent implements OnInit {
   }
 
   confirm() {
-    this.addEvent();
+    this.addEvent('Navidad', '24-12-2001');
     this.modal.dismiss('confirm');
   }
 
