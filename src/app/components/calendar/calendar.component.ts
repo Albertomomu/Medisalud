@@ -22,6 +22,8 @@ export class CalendarViewComponent implements OnInit {
   user = this.auth.currentUser;
   userID = this.user.uid;
   events: any = [];
+  selectedDate;
+  selectedTitle;
 
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, timeGridPlugin, bootstrap5Plugin, interactionPlugin],
@@ -62,7 +64,7 @@ export class CalendarViewComponent implements OnInit {
   }
 
   confirm() {
-    this.addEvent('Navidad', '24-12-2001');
+    this.addEvent(this.selectedTitle, this.selectedDate.split('T')[0]);
     this.modal.dismiss('confirm');
   }
 
