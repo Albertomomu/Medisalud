@@ -5,8 +5,10 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+  <div style="overflow: auto">
+    <full-calendar [options]='calendarOptions'></full-calendar>  
+  </div>
   <ion-content class="ion-padding">
-    <full-calendar [options]='calendarOptions'></full-calendar>      
     <ion-fab slot="fixed" vertical="bottom" horizontal="end" *ngIf="admin">
       <ion-fab-button>
         <ion-icon name="chevron-up-circle"></ion-icon>
