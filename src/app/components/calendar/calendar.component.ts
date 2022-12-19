@@ -28,8 +28,7 @@ export class CalendarViewComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, timeGridPlugin, bootstrap5Plugin, interactionPlugin],
     initialView: 'dayGridMonth',
-    eventClick: this.handleEventClick.bind(this),// MUST ensure `this` context is maintained
-    events: this.events,
+    eventClick: this.handleEventClick.bind(this),// MUST ensure `this` context is maintained],
   };
 
   constructor(private userService: UserService) { }
@@ -38,6 +37,14 @@ export class CalendarViewComponent implements OnInit {
     if(this.userID === '1TFEAGKXhFVx14BykPh9pdOVTaz1'){
       this.admin = true;
     }
+    const db = getDatabase();
+    const eventsRef = ref(db, 'events');
+    onValue(eventsRef, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        this.events.push(childSnapshot.val());
+      });
+      this.calendarOptions.events = this.events;
+    });
   }
 
   handleEventClick(arg) {
