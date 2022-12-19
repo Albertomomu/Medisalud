@@ -24,12 +24,15 @@ import { RaffleComponent } from './components/raffle/raffle.component';
 import { RaffleSettingsComponent } from './components/raffle-settings/raffle-settings.component';
 import { DocumentsComponent } from './components/documents/documents.component';
 import { CalendarViewComponent } from './components/calendar/calendar.component';
+import { AddeventComponent } from './components/calendar/addevent/addevent.component';
+import { DeleteEventComponent } from './components/calendar/delete-event/delete-event.component';
 
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent, LoginComponent, PrincipalComponent,
                  VerFichadasComponent, FicharComponent, MenuComponent, ChatComponent,
-                 RaffleComponent, RaffleSettingsComponent, DocumentsComponent, CalendarViewComponent, ],
+                 RaffleComponent, RaffleSettingsComponent, DocumentsComponent,
+                 CalendarViewComponent, AddeventComponent, DeleteEventComponent],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule,
             HttpClientModule, FullCalendarModule,
             provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth())],

@@ -7,7 +7,9 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import { UserService } from 'src/app/services/user.service';
 import { child, getDatabase, onValue, push, ref, update } from 'firebase/database';
 import { OverlayEventDetail } from '@ionic/core/components';
-import { IonModal } from '@ionic/angular';
+import { IonModal, ModalController } from '@ionic/angular';
+import { AddeventComponent } from './addevent/addevent.component';
+import { DeleteEventComponent } from './delete-event/delete-event.component';
 
 @Component({
   selector: 'app-calendar',
@@ -31,7 +33,10 @@ export class CalendarViewComponent implements OnInit {
     eventClick: this.handleEventClick.bind(this),// MUST ensure `this` context is maintained],
   };
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private modalCtrl: ModalController
+    ) { }
 
   ngOnInit() {
     if(this.userID === '1TFEAGKXhFVx14BykPh9pdOVTaz1'){
@@ -47,20 +52,35 @@ export class CalendarViewComponent implements OnInit {
     });
   }
 
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: AddeventComponent,
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirm') {
+
+    }
+  }
+
+  async openModal2() {
+    const modal = await this.modalCtrl.create({
+      component: DeleteEventComponent,
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirm') {
+
+    }
+  }
+
   handleEventClick(arg) {
     console.log(arg.event.start);
     console.log(arg.event.title);
-  }
-  //WORKING
-  addEvent(title: string, date: string) {
-    // eslint-disable-next-line object-shorthand
-    const eventData = {title: title, date: date};
-    const db = getDatabase();
-    const newKey = push(child(ref(db), 'events')).key;
-    const updates = {};
-    updates[newKey] = eventData;
-    update(ref(db, 'events'), updates);
-    window.location.reload();
   }
 
   deleteEvent() {
@@ -69,11 +89,6 @@ export class CalendarViewComponent implements OnInit {
 
   cancel() {
     this.modal.dismiss(null, 'cancel');
-  }
-
-  confirm() {
-    this.addEvent(this.selectedTitle, this.selectedDate.split('T')[0]);
-    this.modal.dismiss('confirm');
   }
 
   onWillDismiss(event: Event) {
