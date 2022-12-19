@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonModal, ModalController } from '@ionic/angular';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
 @Component({
   selector: 'app-delete-event',
@@ -7,8 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteEventComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild(IonModal) modal: IonModal;
+  events: any = [];
+  constructor(private modalCtrl: ModalController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const db = getDatabase();
+    const eventsRef = ref(db, 'events');
+    onValue(eventsRef, (snapshot) => {
+      snapshot.forEach((childSnapshot) => {
+        this.events.push(childSnapshot.val());
+      });
+    });
+  }
+
+  cancel() {
+    return this.modalCtrl.dismiss(null, 'cancel');
+  }
 
 }
