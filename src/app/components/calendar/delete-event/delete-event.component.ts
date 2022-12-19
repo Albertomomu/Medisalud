@@ -37,7 +37,7 @@ export class DeleteEventComponent implements OnInit {
       }
     });
     console.log(checkedsArr); */
-    this.modal.dismiss('confirm');
+    this.modalCtrl.dismiss('confirm');
   }
 
   delete(event){

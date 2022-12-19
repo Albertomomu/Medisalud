@@ -23,7 +23,7 @@ export class AddeventComponent implements OnInit {
 
   confirm() {
     this.addEvent(this.selectedTitle, this.selectedDate.split('T')[0]);
-    this.modal.dismiss('confirm');
+    this.modalCtrl.dismiss('confirm');
   }
 
   addEvent(title: string, date: string) {
