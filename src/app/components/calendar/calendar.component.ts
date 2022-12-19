@@ -60,6 +60,7 @@ export class CalendarViewComponent implements OnInit {
     const updates = {};
     updates[newKey] = eventData;
     update(ref(db, 'events'), updates);
+    window.location.reload();
   }
 
   deleteEvent() {
