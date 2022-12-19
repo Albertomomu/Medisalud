@@ -29,14 +29,15 @@ export class DeleteEventComponent implements OnInit {
   }
 
   confirm() {
-/*     const checkeds = Array.prototype.slice.call(document.getElementsByClassName('eventsC'));
+    const checkeds = Array.prototype.slice.call(document.getElementsByClassName('eventsC'));
     const checkedsArr = [];
     checkeds.forEach((checkt) => {
-      if(checkt.checked){
+      console.log(checkt);
+      if(checkt.checked === true){
         checkedsArr.push(checkt);
       }
     });
-    console.log(checkedsArr); */
+    console.log(checkedsArr);
     this.modalCtrl.dismiss('confirm');
   }
 
