@@ -11,6 +11,7 @@ export class DeleteEventComponent implements OnInit {
 
   @ViewChild(IonModal) modal: IonModal;
   events: any = [];
+
   constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
@@ -25,6 +26,22 @@ export class DeleteEventComponent implements OnInit {
 
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+/*     const checkeds = Array.prototype.slice.call(document.getElementsByClassName('eventsC'));
+    const checkedsArr = [];
+    checkeds.forEach((checkt) => {
+      if(checkt.checked){
+        checkedsArr.push(checkt);
+      }
+    });
+    console.log(checkedsArr); */
+    this.modal.dismiss('confirm');
+  }
+
+  delete(event){
+    console.log(event);
   }
 
 }

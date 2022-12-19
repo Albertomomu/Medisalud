@@ -83,18 +83,4 @@ export class CalendarViewComponent implements OnInit {
     console.log(arg.event.title);
   }
 
-  deleteEvent() {
-
-  }
-
-  cancel() {
-    this.modal.dismiss(null, 'cancel');
-  }
-
-  onWillDismiss(event: Event) {
-    const ev = event as CustomEvent<OverlayEventDetail<string>>;
-    if (ev.detail.role === 'confirm') {
-    }
-  }
-
 }
