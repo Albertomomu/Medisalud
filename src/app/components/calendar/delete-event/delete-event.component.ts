@@ -28,15 +28,16 @@ export class DeleteEventComponent implements OnInit {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
 
+  getCheckedItems() {
+    const checkedItems = this.events
+      .filter((event) => event.checked)
+      .map((event) => event.title);
+    return checkedItems;
+  }
+
   confirm() {
-    const checkeds = Array.prototype.slice.call(document.getElementsByClassName('eventsC'));
-    const checkedsArr = [];
-    checkeds.forEach((checkt) => {
-      if(checkt.checked === true){
-        checkedsArr.push(checkt);
-      }
-    });
-    this.delete(checkedsArr);
+    const checkedItems = this.getCheckedItems();
+    this.delete(checkedItems);
     this.modalCtrl.dismiss('confirm');
   }
 
