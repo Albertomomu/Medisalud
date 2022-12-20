@@ -50,6 +50,7 @@ export class DeleteEventComponent implements OnInit {
           if(item.title === childSnapshot.val().title && item.date === childSnapshot.val().date){
             const evRef = ref(db, 'events/' + childSnapshot.key);
             remove(evRef);
+            window.location.reload();
           }
         });
       });
