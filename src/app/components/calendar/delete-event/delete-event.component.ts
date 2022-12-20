@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonModal, ModalController } from '@ionic/angular';
-import { getDatabase, ref, onValue, remove } from 'firebase/database';
+import { getDatabase, ref, onValue, remove, child } from 'firebase/database';
 
 @Component({
   selector: 'app-delete-event',
@@ -48,7 +48,8 @@ export class DeleteEventComponent implements OnInit {
       snapshot.forEach((childSnapshot) => {
         checkedItems.forEach((item) =>{
           if(item.title === childSnapshot.val().title && item.date === childSnapshot.val().date){
-            console.log('Eliminar eventos' + item.title);
+            const evRef = ref(db, 'events/' + childSnapshot.key);
+            remove(evRef);
           }
         });
       });
