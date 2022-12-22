@@ -81,8 +81,6 @@ export class CalendarViewComponent implements OnInit {
   }
 
   async handleEventClick(arg) {
-    console.log(arg.event.start);
-    console.log(arg.event.title);
     const alert = await this.alertController.create({
       header: 'Event info',
       subHeader: '\n',

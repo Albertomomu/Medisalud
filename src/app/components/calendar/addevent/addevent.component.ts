@@ -22,6 +22,9 @@ export class AddeventComponent implements OnInit {
   }
 
   confirm() {
+    if(this.selectedDate === undefined) {
+      this.selectedDate = new Date().toISOString();
+    }
     this.addEvent(this.selectedTitle, this.selectedDate.split('T')[0]);
     this.modalCtrl.dismiss('confirm');
   }
