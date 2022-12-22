@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonModal, ModalController } from '@ionic/angular';
+import { AlertController, IonModal, ModalController } from '@ionic/angular';
 import { getDatabase, ref, onValue, remove, child } from 'firebase/database';
 
 @Component({
@@ -11,6 +11,7 @@ export class DeleteEventComponent implements OnInit {
 
   @ViewChild(IonModal) modal: IonModal;
   events: any = [];
+  alert: any;
 
   constructor(private modalCtrl: ModalController) { }
 

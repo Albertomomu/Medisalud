@@ -7,7 +7,7 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import { UserService } from 'src/app/services/user.service';
 import { child, getDatabase, onValue, push, ref, update } from 'firebase/database';
 import { OverlayEventDetail } from '@ionic/core/components';
-import { IonModal, ModalController } from '@ionic/angular';
+import { AlertController, IonModal, ModalController } from '@ionic/angular';
 import { AddeventComponent } from './addevent/addevent.component';
 import { DeleteEventComponent } from './delete-event/delete-event.component';
 
@@ -30,12 +30,14 @@ export class CalendarViewComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, timeGridPlugin, bootstrap5Plugin, interactionPlugin],
     initialView: 'dayGridMonth',
+    dateClick: this.handleEventClick.bind(this),
     eventClick: this.handleEventClick.bind(this),// MUST ensure `this` context is maintained],
   };
 
   constructor(
     private userService: UserService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private alertController: AlertController
     ) { }
 
   ngOnInit() {
@@ -78,9 +80,16 @@ export class CalendarViewComponent implements OnInit {
     }
   }
 
-  handleEventClick(arg) {
+  async handleEventClick(arg) {
     console.log(arg.event.start);
     console.log(arg.event.title);
+    const alert = await this.alertController.create({
+      header: 'Event info',
+      subHeader: '\n',
+      message: 'Title: <b>' + arg.event.title + '</b> <br><br> Date: <b>' + arg.event.start.toDateString(),
+      buttons: ['OK'],
+    });
+    await alert.present();
   }
 
 }
