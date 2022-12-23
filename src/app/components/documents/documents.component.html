@@ -1,3 +1,30 @@
-<p>
-  documents works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/principal"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+  <ion-content class="ion-padding">
+    <ion-list>
+      <ion-item>
+        <ion-icon name="document-attach-outline"></ion-icon>
+        <ion-input type="button" class="ion-margin-start">Documents</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="images-outline"></ion-icon>
+        <ion-input type="button" class="ion-margin-start">Images</ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button>
+        <ion-icon name="chevron-up-circle"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-fab-button>
+          <ion-icon name="add-circle"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+  </ion-content> 
+
