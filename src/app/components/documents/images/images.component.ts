@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DocumentsService } from '../../../services/documents.service';
 
 @Component({
   selector: 'app-images',
@@ -7,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImagesComponent implements OnInit {
 
-  constructor() { }
+  images: any = [];
 
-  ngOnInit() {}
+  constructor(private documentsService: DocumentsService) { }
+
+  ngOnInit() {
+    this.documentsService.getImages();
+    this.images = this.documentsService.images;
+  }
 
 }

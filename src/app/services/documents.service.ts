@@ -6,6 +6,8 @@ import { getStorage, ref, uploadBytes, listAll, getDownloadURL } from 'firebase/
 })
 export class DocumentsService {
 
+  images: any = [];
+
   constructor() { }
 
   uploadFile($event: any) {
@@ -29,10 +31,9 @@ export class DocumentsService {
 
     listAll(imgRef)
     .then(async response => {
-
       for(const item of response.items){
         const url = await getDownloadURL(item);
-        console.log(url);
+        this.images.push(url);
       }
     })
     .catch((err) => {

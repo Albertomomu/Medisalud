@@ -1,21 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/principal"></ion-back-button>
+      <ion-back-button defaultHref="/documents"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
   <ion-content class="ion-padding">
-    <ion-list>
-      <ion-item>
-        <ion-icon name="document-attach-outline"></ion-icon>
-        <ion-input type="button" class="ion-margin-start" [routerLinkActive]="">Documents</ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="images-outline"></ion-icon>
-        <ion-input type="button" class="ion-margin-start">Images</ion-input>
-      </ion-item>
-    </ion-list>
+    <div class="images">
+      <img [src]="image" *ngFor="let image of images">
+    </div>
     <ion-fab slot="fixed" vertical="bottom" horizontal="end">
       <ion-fab-button>
         <ion-icon name="chevron-up-circle"></ion-icon>
