@@ -6,9 +6,11 @@
   </ion-toolbar>
 </ion-header>
   <ion-content class="ion-padding">
-    <div class="images">
-      <img [src]="image" *ngFor="let image of images">
-    </div>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide *ngFor="let image of images">
+        <img [src]="image">
+      </ion-slide>
+    </ion-slides>
     <ion-fab slot="fixed" vertical="bottom" horizontal="end">
       <ion-fab-button>
         <ion-icon name="chevron-up-circle"></ion-icon>

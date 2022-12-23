@@ -9,6 +9,10 @@ import { DocumentsService } from '../../../services/documents.service';
 export class ImagesComponent implements OnInit {
 
   images: any = [];
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
 
   constructor(private documentsService: DocumentsService) { }
 
