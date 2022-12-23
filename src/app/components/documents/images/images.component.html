@@ -5,12 +5,12 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-  <ion-content class="ion-padding">
-    <ion-slides pager="true" [options]="slideOpts">
-      <ion-slide *ngFor="let image of images">
-        <img [src]="image">
-      </ion-slide>
-    </ion-slides>
+  <ion-content class="ion-padding" class="images-container">
+      <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide *ngFor="let image of images">
+          <img [src]="image">
+        </ion-slide>
+      </ion-slides>
     <ion-fab slot="fixed" vertical="bottom" horizontal="end">
       <ion-fab-button>
         <ion-icon name="chevron-up-circle"></ion-icon>
