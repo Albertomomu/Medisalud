@@ -14,7 +14,12 @@ export class MenuComponent implements OnInit {
     private router: Router
     ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if(document.body.classList.contains('dark')){
+      const darkTheme = document.getElementById('themeToggle') as HTMLInputElement;
+      darkTheme.checked = true;
+    }
+  }
 
   logout() {
     this.userService.logout()
