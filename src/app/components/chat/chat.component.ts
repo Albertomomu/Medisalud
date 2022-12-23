@@ -31,6 +31,7 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.messages = [];
     const db = getDatabase();
     const showMessagesRef = ref(db, 'mensajes/');
     onValue(showMessagesRef, (snapshot) => {
