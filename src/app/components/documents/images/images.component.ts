@@ -17,8 +17,10 @@ export class ImagesComponent implements OnInit {
   constructor(private documentsService: DocumentsService) { }
 
   ngOnInit() {
+    this.images = '';
     this.documentsService.getImages();
     this.images = this.documentsService.images;
+    console.log(this.images);
   }
 
 }

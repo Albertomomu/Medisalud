@@ -26,6 +26,7 @@ export class DocumentsService {
   }
 
   getImages(){
+    this.images = [];
     const storage = getStorage();
     const imgRef = ref(storage, `images`);
 
