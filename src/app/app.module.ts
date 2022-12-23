@@ -26,13 +26,15 @@ import { DocumentsComponent } from './components/documents/documents.component';
 import { CalendarViewComponent } from './components/calendar/calendar.component';
 import { AddeventComponent } from './components/calendar/addevent/addevent.component';
 import { DeleteEventComponent } from './components/calendar/delete-event/delete-event.component';
+import { ImagesComponent } from './components/documents/images/images.component';
+import { FilesComponent } from './components/documents/files/files.component';
 
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent, LoginComponent, PrincipalComponent,
                  VerFichadasComponent, FicharComponent, MenuComponent, ChatComponent,
                  RaffleComponent, RaffleSettingsComponent, DocumentsComponent,
-                 CalendarViewComponent, AddeventComponent, DeleteEventComponent],
+                 CalendarViewComponent, AddeventComponent, DeleteEventComponent, ImagesComponent, FilesComponent],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule,
             HttpClientModule, FullCalendarModule,
             provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth())],

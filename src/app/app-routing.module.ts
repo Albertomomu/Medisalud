@@ -10,6 +10,8 @@ import { ChatComponent } from './components/chat/chat.component';
 import { RaffleComponent } from './components/raffle/raffle.component';
 import { DocumentsComponent } from './components/documents/documents.component';
 import { CalendarViewComponent } from './components/calendar/calendar.component';
+import { FilesComponent } from './components/documents/files/files.component';
+import { ImagesComponent } from './components/documents/images/images.component';
 
 const routes: Routes = [
   {
@@ -29,6 +31,8 @@ const routes: Routes = [
   {path: 'chat', component: ChatComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))},
   {path: 'raffle', component: RaffleComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))},
   {path: 'documents', component: DocumentsComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))},
+  {path: 'files', component: FilesComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))},
+  {path: 'images', component: ImagesComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))},
   {path: 'calendar', component: CalendarViewComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))}
 ];
 

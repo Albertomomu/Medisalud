@@ -1,21 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { getStorage, ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 
-
-@Component({
-  selector: 'app-documents',
-  templateUrl: './documents.component.html',
-  styleUrls: ['./documents.component.scss'],
+@Injectable({
+  providedIn: 'root'
 })
-export class DocumentsComponent implements OnInit {
+export class DocumentsService {
 
   constructor() { }
 
-  ngOnInit() {
-    /* this.getImages(); */
-  }
-
-  /* uploadFile($event: any) {
+  uploadFile($event: any) {
 
     const file = $event.target.files[0];
     console.log(file);
@@ -46,6 +39,6 @@ export class DocumentsComponent implements OnInit {
       console.log(err);
     });
 
-  } */
+  }
 
 }

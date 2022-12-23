@@ -9,11 +9,11 @@
     <ion-list>
       <ion-item>
         <ion-icon name="document-attach-outline"></ion-icon>
-        <ion-button fill="clear" class="ion-margin-start" routerLink="/files">Documents</ion-button>
+        <ion-input type="button" class="ion-margin-start" [routerLinkActive]="">Documents</ion-input>
       </ion-item>
       <ion-item>
         <ion-icon name="images-outline"></ion-icon>
-        <ion-button fill="clear" class="ion-margin-start" routerLink="/images">Images</ion-button>
+        <ion-input type="button" class="ion-margin-start">Images</ion-input>
       </ion-item>
     </ion-list>
     <ion-fab slot="fixed" vertical="bottom" horizontal="end">
@@ -27,4 +27,3 @@
       </ion-fab-list>
     </ion-fab>
   </ion-content> 
-
