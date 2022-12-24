@@ -45,6 +45,7 @@ export class ChatComponent implements OnInit {
           this.messages.push(complete);
           this.messagesWriter.push(childSnapshot.val().user);
         });
+        this.content.scrollToBottom(1500);
     });
   }
 

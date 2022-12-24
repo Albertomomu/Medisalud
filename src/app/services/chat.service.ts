@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild } from '@angular/core';
+import { IonContent } from '@ionic/angular';
 import { getDatabase, ref, set, push, onValue } from 'firebase/database';
 
 @Injectable({
@@ -8,6 +9,7 @@ import { getDatabase, ref, set, push, onValue } from 'firebase/database';
 
 export class ChatService {
 
+    @ViewChild(IonContent, {static: false}) content: IonContent;
     messages = [];
 
     constructor(){}
