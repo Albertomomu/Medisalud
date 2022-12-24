@@ -10,10 +10,8 @@ export class DocumentsService {
 
   constructor() { }
 
-  uploadFile($event: any) {
+  uploadFile(file) {
 
-    const file = $event.target.files[0];
-    console.log(file);
     const storage = getStorage();
     const imgRef = ref(storage, `images/${file.name}`);
 

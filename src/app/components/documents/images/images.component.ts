@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { IonModal } from '@ionic/angular';
 import { DocumentsService } from '../../../services/documents.service';
+import { OverlayEventDetail } from '@ionic/core/components';
 
 @Component({
   selector: 'app-images',
@@ -8,6 +10,9 @@ import { DocumentsService } from '../../../services/documents.service';
 })
 export class ImagesComponent implements OnInit {
 
+  @ViewChild(IonModal) modal: IonModal;
+  @ViewChild('fileInput') fileInput: ElementRef;
+  selectedFile: File;
   images: any = [];
   slideOpts = {
     initialSlide: 1,
@@ -21,6 +26,26 @@ export class ImagesComponent implements OnInit {
     this.documentsService.getImages();
     this.images = this.documentsService.images;
     console.log(this.images);
+  }
+
+  onFileChange(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+  confirm() {
+    this.documentsService.uploadFile(this.selectedFile);
+    this.modal.dismiss('confirm');
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+
+    }
   }
 
 }
