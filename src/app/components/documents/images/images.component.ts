@@ -25,7 +25,6 @@ export class ImagesComponent implements OnInit {
     this.images = '';
     this.documentsService.getImages();
     this.images = this.documentsService.images;
-    console.log(this.images);
   }
 
   onFileChange(event: any) {

@@ -8,6 +8,7 @@ import { getStorage, ref, uploadBytes, listAll, getDownloadURL } from 'firebase/
 export class DocumentsService {
 
   images: any = [];
+  docs: any = [];
 
   constructor(private toastController: ToastController) { }
 
@@ -44,6 +45,37 @@ export class DocumentsService {
       for(const item of response.items){
         const url = await getDownloadURL(item);
         this.images.push(url);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  }
+
+  uploadDocs(file) {
+
+    const storage = getStorage();
+    const imgRef = ref(storage, `documents/${file.name}`);
+
+
+    uploadBytes(imgRef, file).then((snapshot) => {
+      this.presentToast();
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+
+  getDocs(){
+    this.docs = [];
+    const storage = getStorage();
+    const imgRef = ref(storage, `documents`);
+
+    listAll(imgRef)
+    .then(async response => {
+      for(const item of response.items){
+        const url = await getDownloadURL(item);
+        this.docs.push(url);
       }
     })
     .catch((err) => {
