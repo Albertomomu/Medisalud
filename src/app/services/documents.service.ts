@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { getStorage, ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 
 @Injectable({
@@ -8,7 +9,17 @@ export class DocumentsService {
 
   images: any = [];
 
-  constructor() { }
+  constructor(private toastController: ToastController) { }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Image upload correctly!',
+      duration: 2000,
+      position: 'top'
+    });
+
+    await toast.present();
+  }
 
   uploadFile(file) {
 
@@ -17,7 +28,7 @@ export class DocumentsService {
 
 
     uploadBytes(imgRef, file).then((snapshot) => {
-      console.log('Uploaded a blob or file!');
+      this.presentToast();
     }).catch((err) => {
       console.log(err);
     });

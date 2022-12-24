@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { IonModal } from '@ionic/angular';
+import { IonModal, ToastController } from '@ionic/angular';
 import { DocumentsService } from '../../../services/documents.service';
 import { OverlayEventDetail } from '@ionic/core/components';
 
