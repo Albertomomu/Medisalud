@@ -50,7 +50,7 @@ export class ChatComponent implements OnInit {
   }
 
   scrollToBottomOnInit() {
-    this.content.scrollToBottom(1500);
+    this.content.scrollToBottom(0);
   }
 
   scrollToBottom(){
