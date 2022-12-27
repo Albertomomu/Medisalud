@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { Router } from '@angular/router';
-import { DataServices } from 'src/app/services/data.service';
-import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-principal',
@@ -20,5 +17,12 @@ export class PrincipalComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  handleRefresh(event) {
+    setTimeout(() => {
+      // Any calls to load data go here
+      event.target.complete();
+    }, 2000);
+  };
 
 }

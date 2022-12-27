@@ -3,6 +3,5 @@
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular",
-  "theme": "./src/global.css"
+  "type": "angular"
 }
