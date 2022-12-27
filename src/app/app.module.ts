@@ -37,7 +37,7 @@ import { DocumentsPipe } from './components/documents.pipe';
                  VerFichadasComponent, FicharComponent, MenuComponent, ChatComponent,
                  RaffleComponent, RaffleSettingsComponent, DocumentsComponent,
                  CalendarViewComponent, AddeventComponent, DeleteEventComponent, ImagesComponent, FilesComponent, DocumentsPipe],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule,
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot({mode: 'ios'}), AppRoutingModule,
             HttpClientModule, FullCalendarModule,
             provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth())],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, { provide: LOCALE_ID, useValue: 'es-ES' }],

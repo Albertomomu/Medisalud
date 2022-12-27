@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   loginWithGoole() {
     this.userService.loginWithGoole()
     .then(res => {
-      this.router.navigate(['/principal']);
+      this.router.navigate(['./principal']);
     })
     .catch(err => console.log(err));
   }
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   loginWithGithub() {
     this.userService.loginWithGithub()
     .then(res => {
-      this.router.navigate(['/principal']);
+      this.router.navigate(['./principal']);
     })
     .catch(err => console.log(err));
   }
