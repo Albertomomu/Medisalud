@@ -31,11 +31,12 @@ import { DeleteEventComponent } from './components/calendar/delete-event/delete-
 import { ImagesComponent } from './components/documents/images/images.component';
 import { FilesComponent } from './components/documents/files/files.component';
 import { DocumentsPipe } from './components/documents.pipe';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent, LoginComponent, PrincipalComponent,
                  VerFichadasComponent, FicharComponent, MenuComponent, ChatComponent,
-                 RaffleComponent, RaffleSettingsComponent, DocumentsComponent,
+                 RaffleComponent, RaffleSettingsComponent, DocumentsComponent, ProfileComponent,
                  CalendarViewComponent, AddeventComponent, DeleteEventComponent, ImagesComponent, FilesComponent, DocumentsPipe],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot({mode: 'ios'}), AppRoutingModule,
             HttpClientModule, FullCalendarModule,
