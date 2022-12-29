@@ -57,19 +57,6 @@ export class FicharComponent implements OnInit {
     this.data.guardarRegistros(this.userID, dataFich);
 }
 
-/*   mostrarFichadas(username){
-    this.dataFichada = '';
-    username = username.split(' ');
-    const user = username[0] + '_' + username[1];
-    this.data.mostrarRegistros(user);
-    this.dataFichada = JSON.stringify(this.data.dataFichada);
-    this.dataFichada = this.dataFichada.substr(1, this.dataFichada.length-1);
-    this.dataFichada = this.dataFichada.slice(0, this.dataFichada.length -1);
-    this.fichadaArray = this.dataFichada.split(',');
-    this.fichadaArray = this.fichadaArray.reverse();
-    console.log(this.dataFichada);
-  } */
-
   mostrarFichadas(){
     this.fichadaArray = [];
     const db = getDatabase();
