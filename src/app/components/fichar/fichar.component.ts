@@ -67,7 +67,7 @@ export class FicharComponent implements OnInit {
     const fichadasRef = ref(db, `fichar/${this.userID}`);
     onValue(fichadasRef, (snapShot) => {
       snapShot.forEach(childSnapShot => {
-        this.fichadaArray.push({
+        this.fichadaArray.unshift({
           date: childSnapShot.val().date,
           estado: childSnapShot.val().estado
         });
