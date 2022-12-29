@@ -71,7 +71,6 @@ export class FicharComponent implements OnInit {
           date: childSnapShot.val().date,
           estado: childSnapShot.val().estado
         });
-        this.fichadaArray.reverse();
       });
     });
   }
