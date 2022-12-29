@@ -37,13 +37,13 @@ export class FicharComponent implements OnInit {
     onValue(estadoRef, (snapShot) => {
       snapShot.forEach(childSnapShot => {
         this.estado = childSnapShot.val().estado;
-        if(this.estado === 'Entrada'){
-          this.estado = 'Salida';
-        }else {
-          this.estado = 'Entrada';
-        }
       });
     });
+    if(this.estado === 'Entrada'){
+      this.estado = 'Salida';
+    }else {
+      this.estado = 'Entrada';
+    }
   }
 
   fichar() {
