@@ -23,6 +23,7 @@ export class FicharComponent implements OnInit {
   user = this.auth.currentUser;
   userID = this.user.uid;
   isModalOpen = false;
+  dataFich: any = '';
 
   constructor(
     private userService: UserService ,
@@ -53,27 +54,9 @@ export class FicharComponent implements OnInit {
       date: date + ' - ' + hour,
       estado: this.estado
     };
+    this.dataFich = dataFich;
     this.data.guardarRegistros(this.userID, dataFich);
-/*     const hour = new Date().toLocaleTimeString('es-ES');
-      const date = new Date().toLocaleDateString('es-ES');
-      this.data = {
-          date: date + ' - ' + hour,
-          estado: 'Entrada'
-      };
-      const db = getDatabase();
-      const registerReference = '';
-    this.http.post('https://lowgames-e327f-default-rtdb.europe-west1.firebasedatabase.app/fichar/' + userID + '.json',
-    JSON.stringify(this.data)).subscribe(
-    response => console.log(response),
-    error => console.log(error)
-    ); */
 }
-
-/*   fichar(userID) {
-    this.data.guardarRegistros(userID);
-    this.date = this.data.data.date;
-    this.estado = this.data.data.estado;
-  } */
 
 /*   mostrarFichadas(username){
     this.dataFichada = '';
@@ -97,7 +80,7 @@ export class FicharComponent implements OnInit {
     const alert = await this.alertController.create({
       header: 'Info',
       subHeader: `'Succesfully clock in'`,
-      message: `You clocked in successfully at ${JSON.stringify(this.date)} - ${JSON.stringify(this.estado)}`,
+      message: `You clocked in successfully at ${JSON.stringify(this.dataFich.date)} - ${JSON.stringify(this.dataFich.estado)}`,
       buttons: ['OK'],
     });
     await alert.present();
