@@ -26,18 +26,17 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.updateProfileForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
-      email:['', [Validators.required, Validators.email]],
-      picture: ['']
+      name: [this.auth.currentUser.displayName, Validators.required],
+      email:[this.auth.currentUser.email, [Validators.required, Validators.email]],
+      password: [this.auth.currentUser, [Validators.required]],
+      picture: [this.auth.currentUser.photoURL]
     });
   }
 
   updateProfile() {
-    const username = this.updateProfileForm.get('username').value;
     const name = this.updateProfileForm.get('name').value;
     const surname = this.updateProfileForm.get('surname').value;
+    const password = this.updateProfileForm.get('password').value;
     const picture = this.updateProfileForm.get('picture').value;
 
   }

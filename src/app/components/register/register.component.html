@@ -13,6 +13,14 @@
       <ion-title size="large">Register</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-item>
+    <ion-avatar slot="start">
+      <img alt="profilePicture" src="https://ionicfram ework.com/docs/img/demos/avatar.svg" />
+    </ion-avatar>
+    <ion-label>
+      Avatar Item
+    </ion-label>
+  </ion-item>
   <form [formGroup]="registerForm" (ngSubmit)="submitForm()" novalidate>
     <ion-item class="ion-margin-top">
       <ion-label>Name</ion-label>
@@ -47,6 +55,6 @@
   <span class="error ion-padding" *ngIf="isSubmitted && errorControl.password.errors?.minlength">
     Password should be min 5 chars long.
   </span>
-    <ion-button type="submit" expand="block" class="ion-margin-top">Register</ion-button>
+    <ion-button type="submit" expand="block" class="ion-margin-top">Update profile</ion-button>
   </form> 
 </ion-content>
