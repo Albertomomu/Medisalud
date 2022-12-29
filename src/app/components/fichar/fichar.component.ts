@@ -36,12 +36,24 @@ export class FicharComponent implements OnInit {
     onValue(estadoRef, (snapShot) => {
       snapShot.forEach(childSnapShot => {
         this.estado = childSnapShot.val().estado;
+        if(this.estado === 'Entrada'){
+          this.estado = 'Salida';
+        }else {
+          this.estado = 'Entrada';
+        }
       });
     });
   }
 
-  guardarRegistros() {
+  fichar() {
     console.log(this.estado);
+    const hour = new Date().toLocaleTimeString('es-ES');
+    const date = new Date().toLocaleDateString('es-ES');
+    const dataFich: any = {
+      date: date + ' - ' + hour,
+      estado: this.estado
+    };
+    this.data.guardarRegistros(this.userID, dataFich);
 /*     const hour = new Date().toLocaleTimeString('es-ES');
       const date = new Date().toLocaleDateString('es-ES');
       this.data = {
@@ -57,11 +69,11 @@ export class FicharComponent implements OnInit {
     ); */
 }
 
-  fichar(userID) {
+/*   fichar(userID) {
     this.data.guardarRegistros(userID);
     this.date = this.data.data.date;
     this.estado = this.data.data.estado;
-  }
+  } */
 
 /*   mostrarFichadas(username){
     this.dataFichada = '';

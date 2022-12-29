@@ -14,18 +14,12 @@ export class DataServices {
 
 constructor(private http: HttpClient){}
 
-    guardarRegistros( userID: string) {
+    guardarRegistros( userID: string, dataFich: any) {
 
-            const hour = new Date().toLocaleTimeString('es-ES');
-              const date = new Date().toLocaleDateString('es-ES');
-              this.data = {
-                  date: date + ' - ' + hour,
-                  estado: 'Entrada'
-              };
               const db = getDatabase();
               const registerReference = '';
             this.http.post('https://lowgames-e327f-default-rtdb.europe-west1.firebasedatabase.app/fichar/' + userID + '.json',
-            JSON.stringify(this.data)).subscribe(
+            JSON.stringify(dataFich)).subscribe(
             response => console.log(response),
             error => console.log(error)
         );
