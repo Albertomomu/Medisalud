@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   updateProfileForm: FormGroup;
   errorMessage: string;
   auth = this.userService.getAuth();
+  profilePic = this.auth.currentUser.photoURL;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,7 +30,7 @@ export class ProfileComponent implements OnInit {
       name: [this.auth.currentUser.displayName, Validators.required],
       email:[this.auth.currentUser.email, [Validators.required, Validators.email]],
       password: [this.auth.currentUser, [Validators.required]],
-      picture: [this.auth.currentUser.photoURL]
+      profilePic: [this.auth.currentUser.photoURL]
     });
   }
 

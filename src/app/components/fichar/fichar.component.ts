@@ -4,7 +4,7 @@ import { DataServices } from 'src/app/services/data.service';
 import { AlertController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 import { IonModal } from '@ionic/angular';
-import { get, getDatabase, ref, child } from 'firebase/database';
+import { get, getDatabase, ref, child, onValue } from 'firebase/database';
 
 @Component({
   selector: 'app-fichar',
@@ -30,7 +30,32 @@ export class FicharComponent implements OnInit {
     private alertController: AlertController,
     private loadingCtrl: LoadingController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const db = getDatabase();
+    const estadoRef = ref(db, (`fichar/${this.userID}`));
+    onValue(estadoRef, (snapShot) => {
+      snapShot.forEach(childSnapShot => {
+        this.estado = childSnapShot.val().estado;
+      });
+    });
+  }
+
+  guardarRegistros() {
+    console.log(this.estado);
+/*     const hour = new Date().toLocaleTimeString('es-ES');
+      const date = new Date().toLocaleDateString('es-ES');
+      this.data = {
+          date: date + ' - ' + hour,
+          estado: 'Entrada'
+      };
+      const db = getDatabase();
+      const registerReference = '';
+    this.http.post('https://lowgames-e327f-default-rtdb.europe-west1.firebasedatabase.app/fichar/' + userID + '.json',
+    JSON.stringify(this.data)).subscribe(
+    response => console.log(response),
+    error => console.log(error)
+    ); */
+}
 
   fichar(userID) {
     this.data.guardarRegistros(userID);
