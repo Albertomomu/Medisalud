@@ -47,7 +47,6 @@ export class FicharComponent implements OnInit {
   }
 
   fichar() {
-    console.log(this.estado);
     const hour = new Date().toLocaleTimeString('es-ES');
     const date = new Date().toLocaleDateString('es-ES');
     const dataFich: any = {
@@ -71,8 +70,20 @@ export class FicharComponent implements OnInit {
     console.log(this.dataFichada);
   } */
 
-  mostrarFichadas(username){
-
+  mostrarFichadas(){
+    this.fichadaArray = [];
+    const db = getDatabase();
+    const fichadasRef = ref(db, `fichar/${this.userID}`);
+    onValue(fichadasRef, (snapShot) => {
+      snapShot.forEach(childSnapShot => {
+        console.log(childSnapShot);
+        this.fichadaArray.push({
+          date: childSnapShot.val().date,
+          estado: childSnapShot.val().estado
+        });
+      });
+    });
+    console.log(this.fichadaArray);
   }
 
   async presentAlert() {
