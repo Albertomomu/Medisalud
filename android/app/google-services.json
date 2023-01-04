@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1060593325110",
+    "firebase_url": "https://lowgames-e327f-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "lowgames-e327f",
+    "storage_bucket": "lowgames-e327f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060593325110:android:8f1338ef429a4cae43f497",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1060593325110-l81n033dhvilpdk2dhq26fldej0dul76.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.starter",
+            "certificate_hash": "a98f7aaeed496e09c35b3f5f4e09a55714f96ce1"
+          }
+        },
+        {
+          "client_id": "1060593325110-l5tskrkbjuh66gdm80sfk6c20osqkrnq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpyVzNNg6et-FaPpkbPce-u1KaHMms4Ro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1060593325110-l5tskrkbjuh66gdm80sfk6c20osqkrnq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

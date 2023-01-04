@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+
+
 
 @Component({
   selector: 'app-login',
@@ -8,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -23,12 +27,17 @@ export class LoginComponent implements OnInit {
     .catch(err => console.log(err));
   }
 
-  loginWithGoole() {
+/*   loginWithGoole() {
     this.userService.loginWithGoole()
     .then(res => {
       this.router.navigate(['./principal']);
     })
     .catch(err => console.log(err));
+  } */
+
+  async loginWithGoole() {
+    const googleUser = await GoogleAuth.signIn();
+    console.log(googleUser);
   }
 
   loginWithGithub() {

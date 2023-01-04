@@ -4,6 +4,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -13,8 +14,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const { initializeAppCheck, ReCaptchaV3Provider } = require('firebase/app-check');
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { PrincipalComponent } from './components/principal/principal.component';

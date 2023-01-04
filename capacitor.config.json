@@ -2,5 +2,12 @@
 	"appId": "io.ionic.starter",
 	"appName": "Lowgames",
 	"webDir": "www",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"plugins": {
+		"GoogleAuth": {
+			"scopes": ["profile", "email"],
+			"serverClientId": "1060593325110-l81n033dhvilpdk2dhq26fldej0dul76.apps.googleusercontent.com",
+			"forceCodeForRefreshToken": true
+		}
+	  }
 }
