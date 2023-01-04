@@ -11,11 +11,9 @@ import java.util.ArrayList;
 public class MainActivity extends BridgeActivity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
 
-    this.init(savedInstanceState, new ArrayList<Class<? extends Plugin>>(){{
-      add(GoogleAuth.class);
-    }});
+    this.registerPlugin(GoogleAuth.class);
+    super.onCreate(savedInstanceState);
   }
 
   private void init(Bundle savedInstanceState, ArrayList<Class<? extends Plugin>> classes) {

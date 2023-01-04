@@ -27,17 +27,12 @@ export class LoginComponent implements OnInit {
     .catch(err => console.log(err));
   }
 
-/*   loginWithGoole() {
+  loginWithGoole() {
     this.userService.loginWithGoole()
     .then(res => {
       this.router.navigate(['./principal']);
     })
     .catch(err => console.log(err));
-  } */
-
-  async loginWithGoole() {
-    const googleUser = await GoogleAuth.signIn();
-    console.log(googleUser);
   }
 
   loginWithGithub() {

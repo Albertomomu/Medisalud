@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,
          signInWithPopup, GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider, getAuth } from '@angular/fire/auth';
 
@@ -17,9 +18,13 @@ export class UserService {
         return signInWithEmailAndPassword(this.auth, email, password);
     }
 
-    loginWithGoole() {
+    /* loginWithGoole() {
         return signInWithPopup(this.auth, new GoogleAuthProvider());
-    }
+    } */
+
+    async loginWithGoole() {
+    return await GoogleAuth.signIn();
+  }
 
     loginWithGithub() {
         return signInWithPopup(this.auth, new GithubAuthProvider());
