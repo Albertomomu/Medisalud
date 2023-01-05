@@ -8,6 +8,8 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signO
 })
 export class UserService {
 
+    user: any;
+
     constructor(private auth: Auth) {}
 
     register(email, password){
@@ -22,8 +24,10 @@ export class UserService {
         return signInWithPopup(this.auth, new GoogleAuthProvider());
     } */
 
-    async loginWithGoole() {
-    return await GoogleAuth.signIn();
+    loginWithGoole() {
+    return GoogleAuth.signIn();
+/*     const credential = this.auth.credential(googleUser);
+    return this.afAuth.auth.signInAndRetrieveDataWithCredential(credential); */
   }
 
     loginWithGithub() {

@@ -12,6 +12,7 @@ import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 })
 export class LoginComponent implements OnInit {
 
+  user: any;
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -28,11 +29,18 @@ export class LoginComponent implements OnInit {
   }
 
   loginWithGoole() {
-    this.userService.loginWithGoole()
+/*     this.userService.loginWithGoole()
     .then(res => {
       this.router.navigate(['./principal']);
     })
     .catch(err => console.log(err));
+  } */
+
+  this.userService.loginWithGoole().then(
+    res => {
+      this.user = JSON.stringify(res);
+    });
+
   }
 
   loginWithGithub() {
