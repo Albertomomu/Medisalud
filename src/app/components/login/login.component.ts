@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { Auth, getAuth, signInWithCustomToken } from '@angular/fire/auth';
+import { updateProfile } from 'firebase/auth';
 
 
 
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   user: any;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private auth: Auth) { }
 
   ngOnInit() {}
 
@@ -29,19 +30,34 @@ export class LoginComponent implements OnInit {
   }
 
   loginWithGoole() {
-/*     this.userService.loginWithGoole()
-    .then(res => {
-      this.router.navigate(['./principal']);
-    })
-    .catch(err => console.log(err));
-  } */
 
-  this.userService.loginWithGoole().then(
+  /* this.userService.loginWithGoole().then(
     res => {
+      signInWithCustomToken(this.auth, res);
       this.user = JSON.stringify(res);
-    });
+      this.router.navigate(['./principal']);
+    }); */
+    this.userService.loginWithGoole();
+    this.router.navigate(['./principal']);
 
   }
+
+/*   loginWithGoole() {
+
+    const auth = getAuth();
+    signInWithCustomToken(auth, token)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ...
+      });
+
+  } */
 
   loginWithGithub() {
     this.userService.loginWithGithub()
