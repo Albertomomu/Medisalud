@@ -37,8 +37,10 @@ export class LoginComponent implements OnInit {
       this.user = JSON.stringify(res);
       this.router.navigate(['./principal']);
     }); */
-    this.userService.loginWithGoole();
-    this.router.navigate(['./principal']);
+    this.userService.loginWithGoole().then(() => {
+      this.router.navigate(['./principal']);
+    });
+
 
   }
 
