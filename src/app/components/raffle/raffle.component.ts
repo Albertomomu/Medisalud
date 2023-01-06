@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { getDatabase, onValue, ref } from 'firebase/database';
+import { getDatabase, onValue, ref, update } from 'firebase/database';
 import { RaffleService } from 'src/app/services/raffle.service';
 import { UserService } from 'src/app/services/user.service';
 import { AlertController, ModalController } from '@ionic/angular';
@@ -71,6 +71,18 @@ export class RaffleComponent implements OnInit {
 
   hasEnded() {
     return new Date() > this.endDate;
+  }
+
+  resetWinner() {
+    const db = getDatabase();
+    update(ref(db, 'raffle'), {
+      winner: ''
+    });
+
+    const winner = ref(db, 'raffle/winner');
+    onValue(winner, (snapshot) => {
+      this.winner = snapshot.val();
+    });
   }
 
   participate() {

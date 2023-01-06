@@ -22,7 +22,6 @@ export class RaffleSettingsComponent {
       this.selectedTime = new Date();
     }
     const db = getDatabase();
-    console.log(this.selectedTime);
     update(ref(db, 'raffle'), {
     endTime: this.selectedTime.split('T')[0]
   });
