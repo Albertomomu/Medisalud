@@ -4,7 +4,10 @@ import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import es from '@angular/common/locales/es';
+
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(es);
 
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';

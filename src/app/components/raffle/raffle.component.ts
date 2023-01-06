@@ -37,6 +37,7 @@ export class RaffleComponent implements OnInit {
     const endDate = ref(db, 'raffle');
     onValue(endDate, (snapshot) => {
       this.endDate = new Date(snapshot.val().endTime);
+      console.log(this.endDate);
     });
 
     const showParticipants = ref(db, 'raffle/participants');
