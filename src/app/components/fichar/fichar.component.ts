@@ -65,6 +65,7 @@ export class FicharComponent implements OnInit {
 
   mostrarFichadas(){
     this.fichadaArray = [];
+    this.groupedByDate = [];
     const db = getDatabase();
     const fichadasRef = ref(db, `fichar/${this.userID}`);
     onValue(fichadasRef, (snapShot) => {
@@ -80,6 +81,7 @@ export class FicharComponent implements OnInit {
     this.fichadaArray.forEach(el => {
       if (this.groupedByDate[el.date]) {
         this.groupedByDate[el.date].push(el);
+        console.log(el);
       } else {
         this.groupedByDate[el.date] = [el];
       }

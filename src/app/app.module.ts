@@ -34,9 +34,10 @@ import { ImagesComponent } from './components/documents/images/images.component'
 import { FilesComponent } from './components/documents/files/files.component';
 import { DocumentsPipe } from './components/documents.pipe';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ReversePipe } from './components/fichar/reversePipe';
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, LoginComponent, PrincipalComponent,
+  declarations: [AppComponent, RegisterComponent, LoginComponent, PrincipalComponent, ReversePipe,
                  VerFichadasComponent, FicharComponent, MenuComponent, ChatComponent,
                  RaffleComponent, RaffleSettingsComponent, DocumentsComponent, ProfileComponent,
                  CalendarViewComponent, AddeventComponent, DeleteEventComponent, ImagesComponent, FilesComponent, DocumentsPipe],
