@@ -83,6 +83,12 @@ export class RaffleComponent implements OnInit {
     onValue(winner, (snapshot) => {
       this.winner = snapshot.val();
     });
+
+    update(ref(db, 'raffle'), {
+      participants: []
+    });
+    this.participating = false;
+
   }
 
   participate() {
