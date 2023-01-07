@@ -35,11 +35,11 @@
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
-        <ion-content>
+        <ion-content color="light">
           <div>
             <div *ngFor="let group of groupedByDate | keyvalue | reverse let i = index" class="ion-margin-top">
               <h4 class="ion-text-center fecha">---- {{group.key}} ----</h4>
-              <ion-list lines="full">
+              <ion-list lines="full" [inset]="true">
                 <ion-item *ngFor="let fic of group.value | keyvalue let i = index">{{fic.value.date}} {{fic.value.hour}} - {{fic.value.estado}}</ion-item>
               </ion-list>
             </div>
