@@ -19,8 +19,15 @@
       <div *ngFor="let message of messages" class="ion-margin-top">
         <ion-list lines="full" [ngClass]="message.id !== id ? 'left' : ''">
           <div class="completeMessage">
-            <p style="font-size: 10px;float:right;" [ngClass]="message.id !== id ? 'align-left' : 'align-right'">{{message.user}}</p>
             <div class="message" [ngClass]="message.id === id ? 'me' : 'you'">{{message.message}}</div>
+            <div class="msgAvatar">
+              <ion-chip>
+                <ion-avatar>
+                  <img alt="profile picture" [src]="photo" />
+                </ion-avatar>            
+                <ion-label style="font-size: 10px;float:right;" [ngClass]="message.id !== id ? 'align-left' : 'align-right'">{{message.user}}</ion-label>
+              </ion-chip>
+            </div>
           </div>
         </ion-list>
       </div>

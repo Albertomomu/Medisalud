@@ -18,6 +18,8 @@ export class ChatComponent implements OnInit {
   id = this.user.uid;
   name = '';
   msgVal = '';
+  photo = this.auth.currentUser.photoURL;
+  msgtime = '';
   messages: any = [];
   messagesWriter: any = [];
 
