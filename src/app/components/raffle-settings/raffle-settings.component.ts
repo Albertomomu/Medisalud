@@ -19,8 +19,9 @@ export class RaffleSettingsComponent {
   confirm() {
 
     if(this.selectedTime === undefined){
-      this.selectedTime = new Date();
+      this.selectedTime = new Date().toISOString();
     }
+    console.log(this.selectedTime);
     const db = getDatabase();
     update(ref(db, 'raffle'), {
     endTime: this.selectedTime.split('T')[0]
