@@ -24,6 +24,7 @@ export class FicharComponent implements OnInit {
   userID = this.user.uid;
   isModalOpen = false;
   dataFich: any = '';
+  groupedByDate = {};
 
   constructor(
     private userService: UserService ,
@@ -54,7 +55,8 @@ export class FicharComponent implements OnInit {
       this.estado = 'Entrada';
     }
     const dataFich: any = {
-      date: date + ' - ' + hour,
+      date,
+      hour,
       estado: this.estado
     };
     this.dataFich = dataFich;
@@ -69,10 +71,20 @@ export class FicharComponent implements OnInit {
       snapShot.forEach(childSnapShot => {
         this.fichadaArray.unshift({
           date: childSnapShot.val().date,
+          hour: childSnapShot.val().hour,
           estado: childSnapShot.val().estado
         });
       });
     });
+
+    this.fichadaArray.forEach(el => {
+      if (this.groupedByDate[el.date]) {
+        this.groupedByDate[el.date].push(el);
+      } else {
+        this.groupedByDate[el.date] = [el];
+      }
+    });
+    console.log(this.groupedByDate);
   }
 
   async presentAlert() {
@@ -80,7 +92,8 @@ export class FicharComponent implements OnInit {
     const alert = await this.alertController.create({
       header: 'Info',
       subHeader: `'Succesfully clock in'`,
-      message: `You clocked in successfully at ${JSON.stringify(this.dataFich.date)} - ${JSON.stringify(this.dataFich.estado)}`,
+      message: `You clocked in successfully at ${JSON.stringify(this.dataFich.date)} ${JSON.stringify(this.dataFich.hour)} - 
+                ${JSON.stringify(this.dataFich.estado)}`,
       buttons: ['OK'],
     });
     await alert.present();

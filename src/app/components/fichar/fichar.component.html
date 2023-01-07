@@ -37,10 +37,16 @@
         </ion-header>
         <ion-content>
           <div>
-            <div *ngFor="let fichada of fichadaArray; let i = index" class="ion-margin-top">
-              <ion-list lines="full">
-                <ion-item [ngClass]="(i % 2 === 0) ? 'odd' : 'even'">{{fichada.date}} - {{fichada.estado}}</ion-item>
-              </ion-list>
+            <div *ngFor="let group of groupedByDate | keyvalue let i = index" class="ion-margin-top">
+              <h4 class="ion-text-center">{{group.key}}</h4>
+              <div *ngFor="let fic of group.value | keyvalue let i = index">
+                <ion-list lines="full">
+                  <ion-item [ngClass]="(i % 2 === 0) ? 'odd' : 'even'">{{fic.value.date}} {{fic.value.hour}} - {{fic.value.estado}}</ion-item>
+                </ion-list>
+              </div>
+              <!-- <ion-list lines="full">
+                <ion-item [ngClass]="(i % 2 === 0) ? 'odd' : 'even'">{{fichada.date}} {{fichada.hour}} - {{fichada.estado}}</ion-item>
+              </ion-list> -->
             </div>
           </div>
         </ion-content>
