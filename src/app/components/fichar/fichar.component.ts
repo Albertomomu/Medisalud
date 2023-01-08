@@ -86,7 +86,6 @@ export class FicharComponent implements OnInit {
         this.groupedByDate[el.date] = [el];
       }
     });
-    console.log(this.groupedByDate);
   }
 
   async presentAlert() {

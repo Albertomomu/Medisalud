@@ -23,7 +23,7 @@ export class ChatService {
         );
     } */
 
-    guardarMensaje(id, user, content, photo, msgTime) {
+    guardarMensaje(id, user, content, photo, msgDate, msgTime) {
         const db = getDatabase();
         if(content !== ''){
             push(ref(db, 'mensajes/'), {
@@ -31,6 +31,7 @@ export class ChatService {
                 user,
                 content,
                 photo,
+                msgDate,
                 msgTime
               });
         }

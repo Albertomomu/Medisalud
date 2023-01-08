@@ -25,7 +25,7 @@
                 <ion-avatar>
                   <img alt="profile picture" [src]="message.photo" />
                 </ion-avatar>           
-                <ion-label style="font-size: 10px;float:right;" [ngClass]="message.id !== id ? 'align-left' : 'align-right'">{{message.user}}{{message.date}}</ion-label>
+                <ion-label style="font-size: 10px;float:right;" [ngClass]="message.id !== id ? 'align-left' : 'align-right'">{{message.user}}<br>{{message.time}}</ion-label>
               </ion-chip>
             </div>
           </div>

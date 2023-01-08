@@ -19,8 +19,10 @@ export class ChatComponent implements OnInit {
   msgVal = '';
   photo = this.auth.currentUser.photoURL;
   msgTime = '';
+  msgDate = '';
   messages: any = [];
   messagesWriter: any = [];
+  groupedByDate = {};
 
   constructor(
     private chatService: ChatService,
@@ -42,13 +44,24 @@ export class ChatComponent implements OnInit {
             id: childSnapshot.val().id,
             user: childSnapshot.val().user,
             message: childSnapshot.val().content,
-            date: childSnapshot.val().msgTime,
+            date: childSnapshot.val().msgDate,
+            time: childSnapshot.val().msgTime,
             photo: childSnapshot.val().photo
           };
           this.messages.push(complete);
           this.messagesWriter.push(childSnapshot.val().user);
         });
-        this.content.scrollToBottom(1500);
+        this.messages.forEach(msg => {
+          console.log(msg.date);
+          if (this.groupedByDate[msg.date]) {
+            this.groupedByDate[msg.date].push(msg);
+            console.log(msg);
+          } else {
+            this.groupedByDate[msg.date] = [msg];
+          }
+        });
+        console.log(this.groupedByDate);
+      this.content.scrollToBottom(1500);
     });
   }
 
@@ -61,12 +74,12 @@ export class ChatComponent implements OnInit {
   }
 
   getValue() {
+
     this.messages = [];
-    this.msgTime = new Date().toISOString();
-    this.chatService.guardarMensaje(this.id,this.user.displayName, this.msgVal, this.photo, this.msgTime);
+    this.msgDate = new Date().toLocaleDateString('es-ES');
+    this.msgTime = new Date().toLocaleTimeString('es-ES');
+    this.chatService.guardarMensaje(this.id,this.user.displayName, this.msgVal, this.photo, this.msgDate, this.msgTime);
     this.msgVal = '';
-    //this.scrollToBottomOnInit();
-    console.log(this.messages);
   }
 
 }
