@@ -29,7 +29,9 @@ export class ChatService {
             push(ref(db, 'mensajes/'), {
                 id,
                 user,
-                content
+                content,
+                photo,
+                msgTime
               });
         }
     }

@@ -41,7 +41,9 @@ export class ChatComponent implements OnInit {
           const complete = {
             id: childSnapshot.val().id,
             user: childSnapshot.val().user,
-            message: childSnapshot.val().content
+            message: childSnapshot.val().content,
+            date: childSnapshot.val().msgTime,
+            photo: childSnapshot.val().photo
           };
           this.messages.push(complete);
           this.messagesWriter.push(childSnapshot.val().user);
