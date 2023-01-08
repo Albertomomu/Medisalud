@@ -52,7 +52,6 @@ export class ChatComponent implements OnInit {
           this.messagesWriter.push(childSnapshot.val().user);
         });
         this.messages.forEach(msg => {
-          console.log(msg.date);
           if (this.groupedByDate[msg.date]) {
             this.groupedByDate[msg.date].push(msg);
             console.log(msg);
@@ -60,7 +59,6 @@ export class ChatComponent implements OnInit {
             this.groupedByDate[msg.date] = [msg];
           }
         });
-        console.log(this.groupedByDate);
       this.content.scrollToBottom(1500);
     });
   }
@@ -76,6 +74,7 @@ export class ChatComponent implements OnInit {
   getValue() {
 
     this.messages = [];
+    this.groupedByDate = [];
     this.msgDate = new Date().toLocaleDateString('es-ES');
     this.msgTime = new Date().toLocaleTimeString('es-ES');
     this.chatService.guardarMensaje(this.id,this.user.displayName, this.msgVal, this.photo, this.msgDate, this.msgTime);
