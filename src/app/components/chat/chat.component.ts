@@ -16,10 +16,9 @@ export class ChatComponent implements OnInit {
   auth = this.userService.getAuth();
   user = this.auth.currentUser;
   id = this.user.uid;
-  name = '';
   msgVal = '';
   photo = this.auth.currentUser.photoURL;
-  msgtime = '';
+  msgTime = '';
   messages: any = [];
   messagesWriter: any = [];
 
@@ -61,8 +60,9 @@ export class ChatComponent implements OnInit {
 
   getValue() {
     this.messages = [];
-    this.chatService.guardarMensaje(this.id,this.user.displayName, this.name);
-    this.name = '';
+    this.msgTime = new Date().toISOString();
+    this.chatService.guardarMensaje(this.id,this.user.displayName, this.msgVal, this.photo, this.msgTime);
+    this.msgVal = '';
     //this.scrollToBottomOnInit();
     console.log(this.messages);
   }
