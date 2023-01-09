@@ -54,18 +54,17 @@ export class ChatComponent implements OnInit {
         this.messages.forEach(msg => {
           if (this.groupedByDate[msg.date]) {
             this.groupedByDate[msg.date].push(msg);
-            console.log(msg);
           } else {
             this.groupedByDate[msg.date] = [msg];
           }
         });
-      this.content.scrollToBottom(1500);
+      /* this.content.scrollToBottom(1500); */
     });
   }
 
-  scrollToBottomOnInit() {
+/*   scrollToBottomOnInit() {
     this.content.scrollToBottom(0);
-  }
+  } */
 
   scrollToBottom(){
     this.content.scrollToBottom(1500);
@@ -79,6 +78,7 @@ export class ChatComponent implements OnInit {
     this.msgTime = new Date().toLocaleTimeString('es-ES');
     this.chatService.guardarMensaje(this.id,this.user.displayName, this.msgVal, this.photo, this.msgDate, this.msgTime);
     this.msgVal = '';
+    this.content.scrollToBottom(1500);
   }
 
 }

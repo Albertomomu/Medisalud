@@ -25,7 +25,7 @@
               <div class="msgAvatar">
                 <ion-chip>
                   <ion-avatar>
-                    <img alt="profile picture" [src]="msg.value.photo" />
+                    <img referrerpolicy=“no-referrer” alt="profile picture" [src]="msg.value.photo" />
                   </ion-avatar>           
                   <ion-label style="font-size: 10px;float:right;" [ngClass]="msg.value.id !== id ? 'align-left' : 'align-right'">{{msg.value.user}}<br>{{msg.value.time}}</ion-label>
                 </ion-chip>
@@ -36,7 +36,7 @@
       </div>
     </div>
     <ion-item class="textBottom">
-      <ion-input class="inputText" placeholder="Enter text" [(ngModel)]="msgVal" (keyup.enter)="[getValue(), scrollToBottom()]"></ion-input>
+      <ion-input class="inputText" placeholder="Enter text" [(ngModel)]="msgVal" (keyup.enter)="getValue()"></ion-input>
     </ion-item>
   </ion-content>
 </div>
