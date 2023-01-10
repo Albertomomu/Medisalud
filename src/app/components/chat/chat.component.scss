@@ -32,19 +32,6 @@ ion-avatar {
     margin-right: 5px;
 }
 
-.timeLeft {
-    position: absolute;
-    left: 0;
-}
-
-.show{
-    visibility: visible;
-}
-
-.dontShow {
-    visibility: hidden;
-}
-
 .fecha {
     font-size: 16px;
     color: grey;
@@ -68,6 +55,10 @@ ion-avatar {
     min-height: 100%vw;
 }
 
+.completeMessage {
+    width: auto;
+}
+
 .align-left{
     text-align: left;
 }
@@ -82,10 +73,8 @@ ion-avatar {
 }
 
 .msgTime {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    font-size: 10px;
+    font-size: 9px;
+    line-height: 3px;
 }
 
 .me {
@@ -99,6 +88,7 @@ ion-avatar {
     float: left !important;
     background-color: white;
     color: black;
+    margin-left: 30px;
 }
 
 .inputText {
