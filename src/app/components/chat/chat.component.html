@@ -21,7 +21,7 @@
         <div *ngFor="let msg of group.value | keyvalue" class="ion-margin-top">
           <ion-list lines="full" [ngClass]="msg.value.id !== id ? 'left' : ''">
             <div class="completeMessage">
-              <div class="message" [ngClass]="msg.value.id === id ? 'me' : 'you'">{{msg.value.message}}</div>
+              <div class="message" [ngClass]="msg.value.id === id ? 'me' : 'you'"><span class="msgUsername" *ngIf='msg.value.id !== id'>{{msg.value.user}}</span><br>{{msg.value.message}}</div>
               <div class="msgAvatar">
                 <ion-chip>
                   <ion-avatar>

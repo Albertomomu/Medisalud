@@ -1,3 +1,11 @@
+ion-content {
+    --background: url(/assets/images/chatBackground.jpg) no-repeat center center / cover;
+}
+
+ion-list {
+    background-color: transparent;
+}
+
 .textBottom{
     box-sizing: border-box;
     position: fixed;
@@ -18,6 +26,10 @@
 .fecha {
     font-size: 16px;
     color: grey;
+}
+
+.msgUsername{
+    font-size: 11px;
 }
 
 .msgAvatar {

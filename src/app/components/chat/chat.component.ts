@@ -42,7 +42,7 @@ export class ChatComponent implements OnInit {
         snapshot.forEach((childSnapshot) =>{
           const complete = {
             id: childSnapshot.val().id,
-            user: childSnapshot.val().user,
+            user: childSnapshot.val().user.split(' ')[0],
             message: childSnapshot.val().content,
             date: childSnapshot.val().msgDate,
             time: childSnapshot.val().msgTime,
