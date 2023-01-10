@@ -48,6 +48,9 @@ export class ChatComponent implements OnInit {
             time: childSnapshot.val().msgTime,
             photo: childSnapshot.val().photo
           };
+          if(complete.photo == null){
+            complete.photo = 'https://ionicframework.com/docs/img/demos/avatar.svg';
+          }
           this.messages.push(complete);
           this.messagesWriter.push(childSnapshot.val().user);
         });

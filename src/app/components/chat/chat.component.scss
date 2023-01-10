@@ -18,9 +18,23 @@ ion-list {
 
 .completeMessage{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     float: right;
     max-width: auto; 
+}
+
+ion-avatar > img {
+    position: absolute;
+    bottom: 0;
+    width: 25px !important;
+    height: 25px !important;
+    margin: 0;
+}
+ion-avatar {
+    width: 25px !important;
+    height: 25px !important;
+    margin: 0;
+    margin-right: 5px;
 }
 
 .fecha {
@@ -59,6 +73,13 @@ ion-list {
     justify-content: flex-start;
 }
 
+.msgTime {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 10px;
+}
+
 .me {
     background-color: #0084FF;
     color: white;
@@ -68,8 +89,8 @@ ion-list {
   
 .you {
     float: left !important;
-    background-color: green;
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 .inputText {

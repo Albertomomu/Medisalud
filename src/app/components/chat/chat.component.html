@@ -21,15 +21,17 @@
         <div *ngFor="let msg of group.value | keyvalue" class="ion-margin-top">
           <ion-list lines="full" [ngClass]="msg.value.id !== id ? 'left' : ''">
             <div class="completeMessage">
-              <div class="message" [ngClass]="msg.value.id === id ? 'me' : 'you'"><span class="msgUsername" *ngIf='msg.value.id !== id'>{{msg.value.user}}</span><br>{{msg.value.message}}</div>
-              <div class="msgAvatar">
-                <ion-chip>
-                  <ion-avatar>
-                    <img referrerpolicy=“no-referrer” alt="profile picture" [src]="msg.value.photo" />
-                  </ion-avatar>           
+              <div>
+                <ion-avatar>
+                  <img referrerpolicy=“no-referrer” alt="profile picture" [src]="msg.value.photo"/>
+                </ion-avatar>  
+              </div>
+              <div class="message" [ngClass]="msg.value.id === id ? 'me' : 'you'"><span class="msgUsername" *ngIf='msg.value.id !== id'>{{msg.value.user}}</span><br>{{msg.value.message}}<span class="msgTime">{{msg.value.time}}</span></div>
+              <!-- <div class="msgAvatar">
+                <ion-chip>         
                   <ion-label style="font-size: 10px;float:right;" [ngClass]="msg.value.id !== id ? 'align-left' : 'align-right'">{{msg.value.user}}<br>{{msg.value.time}}</ion-label>
                 </ion-chip>
-              </div>
+              </div> -->
             </div>
           </ion-list>
         </div>
