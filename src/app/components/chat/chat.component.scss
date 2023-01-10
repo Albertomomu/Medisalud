@@ -4,6 +4,8 @@ ion-content {
 
 ion-list {
     background-color: transparent;
+    display: flex;
+    flex-direction: column;
 }
 
 .textBottom{
@@ -14,13 +16,6 @@ ion-list {
     left: 0;
     border-top: 0px solid black;
     width: 100%;
-}
-
-.completeMessage{
-    display: flex;
-    flex-direction: row;
-    float: right;
-    max-width: auto; 
 }
 
 ion-avatar > img {
@@ -35,6 +30,19 @@ ion-avatar {
     height: 25px !important;
     margin: 0;
     margin-right: 5px;
+}
+
+.timeLeft {
+    position: absolute;
+    left: 0;
+}
+
+.show{
+    visibility: visible;
+}
+
+.dontShow {
+    visibility: hidden;
 }
 
 .fecha {
@@ -55,7 +63,7 @@ ion-avatar {
     border-radius: 5px;
     margin: 0.2em 0;
     padding: 0.5em;
-    max-width: 100%;
+    width: auto !important;
     border-radius: 16px;
     min-height: 100%vw;
 }

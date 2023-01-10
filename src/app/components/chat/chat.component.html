@@ -15,27 +15,33 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding" #content [scrollEvents]="true">
-    <div *ngIf="messages" class="ion-padding-bottom">
+<!--     <div *ngIf="messages" class="ion-padding-bottom">
       <div *ngFor="let group of groupedByDate | keyvalue" class="ion-margin-top">
         <h4 class="ion-text-center fecha">---- {{group.key}} ----</h4>
         <div *ngFor="let msg of group.value | keyvalue" class="ion-margin-top">
           <ion-list lines="full" [ngClass]="msg.value.id !== id ? 'left' : ''">
             <div class="completeMessage">
-              <div>
+              <div *ngIf="msg.value.id !== id">
                 <ion-avatar>
                   <img referrerpolicy=“no-referrer” alt="profile picture" [src]="msg.value.photo"/>
                 </ion-avatar>  
               </div>
-              <div class="message" [ngClass]="msg.value.id === id ? 'me' : 'you'"><span class="msgUsername" *ngIf='msg.value.id !== id'>{{msg.value.user}}</span><br>{{msg.value.message}}<span class="msgTime">{{msg.value.time}}</span></div>
-              <!-- <div class="msgAvatar">
-                <ion-chip>         
-                  <ion-label style="font-size: 10px;float:right;" [ngClass]="msg.value.id !== id ? 'align-left' : 'align-right'">{{msg.value.user}}<br>{{msg.value.time}}</ion-label>
-                </ion-chip>
-              </div> -->
+              <div class="message" [ngClass]="msg.value.id === id ? 'me' : 'you'"><span class="msgUsername" *ngIf='msg.value.id !== id'>{{msg.value.user}}</span><br>{{msg.value.message}}<span class="msgTime" [ngClass]="msg.value.id === id ? 'timeRight' : 'timeLeft'">{{msg.value.time}}</span></div>
             </div>
           </ion-list>
         </div>
       </div>
+    </div> -->
+    <div *ngIf="messages">
+      <ion-list *ngFor="let group of groupedByDate | keyvalue">
+        <h4 class="ion-text-center fecha">---- {{group.key}} ----</h4>
+        <div *ngFor="let msg of group.value | keyvalue">
+          <ion-avatar *ngIf="msg.value.id !== id">
+            <img referrerpolicy=“no-referrer” alt="profile picture" [src]="msg.value.photo"/>
+          </ion-avatar> 
+          <div class="message" [ngClass]="msg.value.id === id ? 'me' : 'you'"><span class="msgUsername" *ngIf='msg.value.id !== id'>{{msg.value.user}}<br></span>{{msg.value.message}}<span class="msgTime" [ngClass]="msg.value.id === id ? 'timeRight' : 'timeLeft'">{{msg.value.time}}</span></div>
+        </div>
+      </ion-list>
     </div>
     <ion-item class="textBottom">
       <ion-input class="inputText" placeholder="Enter text" [(ngModel)]="msgVal" (keyup.enter)="getValue()"></ion-input>
