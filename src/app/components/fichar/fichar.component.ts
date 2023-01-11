@@ -88,6 +88,8 @@ export class FicharComponent implements OnInit {
     });
   }
 
+  sortNull() { };
+
   async presentAlert() {
 
     const alert = await this.alertController.create({
