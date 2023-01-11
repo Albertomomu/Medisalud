@@ -33,6 +33,8 @@ export class ChatComponent implements OnInit {
     this.content.scrollToBottom(0);
   }
 
+  sortNull(){ };
+
   ngOnInit() {
     this.messages = [];
     const db = getDatabase();

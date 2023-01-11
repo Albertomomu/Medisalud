@@ -32,8 +32,8 @@
         </div>
       </div>
     </div> -->
-    <div *ngIf="messages" class="ion-padding-bottom">
-      <ion-list *ngFor="let group of groupedByDate | keyvalue">
+    <div *ngIf="messages"  class="bg">
+      <ion-list *ngFor="let group of groupedByDate | keyvalue: sortNull">
         <h4 class="ion-text-center fecha">---- {{group.key}} ----</h4>
         <div class="completeMessage" *ngFor="let msg of group.value | keyvalue">
           <ion-avatar *ngIf="msg.value.id !== id">
@@ -43,8 +43,10 @@
         </div>
       </ion-list>
     </div>
-    <ion-item class="textBottom">
-      <ion-input class="inputText" placeholder="Enter text" [(ngModel)]="msgVal" (keyup.enter)="getValue()"></ion-input>
-    </ion-item>
+    <div>
+      <ion-item class="textBottom">
+        <ion-input class="inputText" placeholder="Enter text" [(ngModel)]="msgVal" (keyup.enter)="getValue()"></ion-input>
+      </ion-item>
+    </div>
   </ion-content>
 </div>

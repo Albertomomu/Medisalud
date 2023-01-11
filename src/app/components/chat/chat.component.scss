@@ -18,6 +18,10 @@ ion-list {
     width: 100%;
 }
 
+ion-item {
+    --ion-background-color: transparent !important;
+  }
+
 ion-avatar > img {
     position: absolute;
     bottom: 0;
@@ -30,6 +34,10 @@ ion-avatar {
     height: 25px !important;
     margin: 0;
     margin-right: 5px;
+}
+
+.bg {
+    margin-bottom: 80px;
 }
 
 .fecha {
@@ -92,7 +100,7 @@ ion-avatar {
 }
 
 .inputText {
-    background-color: rgb(211, 211, 211);
+    background-color: rgb(255, 255, 255);
     margin: 0 auto;
     border-radius: 36px;
     padding: 5px 25px !important;
