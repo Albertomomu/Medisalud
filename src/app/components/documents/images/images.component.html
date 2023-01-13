@@ -8,7 +8,7 @@
   <ion-content class="ion-padding" class="images-container">
       <ion-slides pager="true" [options]="slideOpts">
         <ion-slide *ngFor="let image of images">
-          <img [src]="image">
+          <img [src]="image.url">
         </ion-slide>
       </ion-slides>
     <ion-fab slot="fixed" vertical="bottom" horizontal="end">
