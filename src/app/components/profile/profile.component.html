@@ -58,7 +58,7 @@
   <span class="error ion-padding" *ngIf="isSubmitted && errorControl.password.errors?.minlength">
     Password should be min 5 chars long.
   </span>
-  <!-- <input formControlName="picture" type="file"  required/> -->
+  <input #fileInput type="file" (change)="onFileChange($event)" required/>
     <ion-button type="submit" expand="block" class="ion-margin-top">Update profile</ion-button>
   </form> 
     </ion-content>

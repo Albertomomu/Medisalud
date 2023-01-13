@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { getAuth, updateProfile } from 'firebase/auth';
+import { DocumentsService } from 'src/app/services/documents.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,15 +11,18 @@ import { getAuth, updateProfile } from 'firebase/auth';
 })
 export class ProfileComponent implements OnInit {
 
+  @ViewChild('fileInput') fileInput: ElementRef;
   isSubmitted = false;
   updateProfileForm: FormGroup;
   errorMessage: string;
   auth = this.userService.getAuth();
   profilePic = this.auth.currentUser.photoURL;
+  selectedFile: File;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
+    private documentsService: DocumentsService
   ) {}
 
   get errorControl() {
@@ -31,9 +35,11 @@ export class ProfileComponent implements OnInit {
       surname: [this.auth.currentUser.displayName.split(' ')[1], Validators.required],
       email:[this.auth.currentUser.email, [Validators.required, Validators.email]],
       password: '',
-      picture: [this.auth.currentUser.photoURL, Validators.required]
     });
-    console.log(this.updateProfileForm.get('picture').value);
+  }
+
+  onFileChange(event: any) {
+    this.selectedFile = event.target.files[0];
   }
 
   updateProfile() {
@@ -41,11 +47,12 @@ export class ProfileComponent implements OnInit {
     const surname = this.updateProfileForm.get('surname').value;
     const email = this.updateProfileForm.get('email').value;
     const password = this.updateProfileForm.get('password').value;
-    //const picture = this.updateProfileForm.get('picture').value;
+    const picture = this.selectedFile.name;
+    this.documentsService.uploadFile(this.selectedFile);
 
     updateProfile(this.auth.currentUser, {
       displayName: name + ' ' + surname,
-      //photoURL: picture
+      photoURL: 'gs://lowgames-e327f.appspot.com/images' + picture
     }).then(() => {
       // Profile updated!
       // ...
