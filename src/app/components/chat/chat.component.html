@@ -34,7 +34,7 @@
     </div> -->
     <div *ngIf="messages"  class="bg">
       <ion-list *ngFor="let group of groupedByDate | keyvalue: sortNull">
-        <h4 class="ion-text-center fecha">---- {{group.key}} ----</h4>
+        <h4 class="ion-text-center"><ion-chip class="fecha">{{group.key}}</ion-chip></h4>
         <div class="completeMessage" *ngFor="let msg of group.value | keyvalue">
           <ion-avatar *ngIf="msg.value.id !== id">
             <img referrerpolicy=“no-referrer” alt="profile picture" [src]="msg.value.photo"/>
