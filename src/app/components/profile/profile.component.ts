@@ -40,9 +40,7 @@ export class ProfileComponent implements OnInit {
     });
     this.updateProfileForm = this.formBuilder.group({
       name: [this.auth.currentUser.displayName.split(' ')[0], Validators.required],
-      surname: [this.auth.currentUser.displayName.split(' ')[1], Validators.required],
-      email:[this.auth.currentUser.email, [Validators.required, Validators.email]],
-      password: '',
+      surname: [this.auth.currentUser.displayName.split(' ')[1], Validators.required]
     });
   }
 
@@ -53,8 +51,6 @@ export class ProfileComponent implements OnInit {
   updateProfile() {
     const name = this.updateProfileForm.get('name').value;
     const surname = this.updateProfileForm.get('surname').value;
-    const email = this.updateProfileForm.get('email').value;
-    const password = this.updateProfileForm.get('password').value;
     const picture = this.selectedFile.name;
     this.documentsService.uploadFile(this.selectedFile);
 
@@ -62,25 +58,11 @@ export class ProfileComponent implements OnInit {
       displayName: name + ' ' + surname,
       photoURL: 'gs://lowgames-e327f.appspot.com/images/' + picture
     }).then(() => {
-      // Profile updated!
       // ...
     }).catch((error) => {
       console.log(error);
       // ...
     });
 
-  }
-
-  uploadPicture(event) {
-/*     const file = event.target.files[0];
-    const filePath = `pictures/${file.name}`;
-    const fileRef = this.afStorage.ref(filePath);
-    const task = fileRef.put(file);
-
-    task.then(() => {
-      fileRef.getDownloadURL().subscribe(downloadURL => {
-        this.form.patchValue({ picture: downloadURL });
-      });
-    }); */
   }
 }
