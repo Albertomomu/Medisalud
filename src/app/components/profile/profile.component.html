@@ -11,7 +11,7 @@
   <form [formGroup]="updateProfileForm" (ngSubmit)="updateProfile()" novalidate>
     <ion-item lines="none">
       <ion-avatar slot="start">
-        <img alt="profilePicture" [src]="profilePic" />
+        <img alt="profilePicture" [src]="domSanitizer.bypassSecurityTrustResourceUrl(profilePic)" />
       </ion-avatar>
     </ion-item>
     <ion-item class="ion-margin-top">

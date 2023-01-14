@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { getAuth, updateProfile } from 'firebase/auth';
 import { DocumentsService } from 'src/app/services/documents.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 @Component({
   selector: 'app-profile',
@@ -12,17 +14,19 @@ import { DocumentsService } from 'src/app/services/documents.service';
 export class ProfileComponent implements OnInit {
 
   @ViewChild('fileInput') fileInput: ElementRef;
+  downloadURL = '';
   isSubmitted = false;
   updateProfileForm: FormGroup;
   errorMessage: string;
   auth = this.userService.getAuth();
-  profilePic = this.auth.currentUser.photoURL;
+  profilePic = ''  /* this.domSanitizer.bypassSecurityTrustUrl(this.auth.currentUser.photoURL) */;
   selectedFile: File;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private documentsService: DocumentsService
+    private documentsService: DocumentsService,
+    public domSanitizer: DomSanitizer
   ) {}
 
   get errorControl() {
@@ -30,6 +34,10 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    const storage = getStorage();
+    getDownloadURL(ref(storage, `${this.auth.currentUser.photoURL}`)).then(url => {
+      this.profilePic = url;
+    });
     this.updateProfileForm = this.formBuilder.group({
       name: [this.auth.currentUser.displayName.split(' ')[0], Validators.required],
       surname: [this.auth.currentUser.displayName.split(' ')[1], Validators.required],
@@ -52,7 +60,7 @@ export class ProfileComponent implements OnInit {
 
     updateProfile(this.auth.currentUser, {
       displayName: name + ' ' + surname,
-      photoURL: 'gs://lowgames-e327f.appspot.com/images' + picture
+      photoURL: 'gs://lowgames-e327f.appspot.com/images/' + picture
     }).then(() => {
       // Profile updated!
       // ...
