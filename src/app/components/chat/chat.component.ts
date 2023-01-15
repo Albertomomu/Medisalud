@@ -60,7 +60,7 @@ export class ChatComponent implements OnInit {
                 complete.photo = url;
               });
           }
-          if(complete.photo == null){
+          if(complete.photo === ''){
             complete.photo = 'https://ionicframework.com/docs/img/demos/avatar.svg';
           }
           this.messages.push(complete);
