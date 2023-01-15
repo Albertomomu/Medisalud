@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IonModal, ToastController } from '@ionic/angular';
 import { DocumentsService } from '../../../services/documents.service';
 import { OverlayEventDetail } from '@ionic/core/components';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-images',
@@ -19,7 +20,8 @@ export class ImagesComponent implements OnInit {
     speed: 400
   };
 
-  constructor(private documentsService: DocumentsService) { }
+  constructor(private documentsService: DocumentsService,
+              private router: Router) { }
 
   ngOnInit() {
     this.images = '';
@@ -38,6 +40,11 @@ export class ImagesComponent implements OnInit {
   confirm() {
     this.documentsService.uploadFile(this.selectedFile);
     this.modal.dismiss('confirm');
+  }
+
+  openImage(image) {
+    this.router.navigate(['/image', image.url]);
+    console.log(image.url);
   }
 
   onWillDismiss(event: Event) {

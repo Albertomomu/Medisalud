@@ -20,7 +20,8 @@ export class FilesComponent implements OnInit {
     speed: 400
   };
 
-  constructor(private documentsService: DocumentsService) { }
+  constructor(private documentsService: DocumentsService,
+              ) { }
 
   ngOnInit() {
     this.docs = [];

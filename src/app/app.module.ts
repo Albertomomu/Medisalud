@@ -35,16 +35,20 @@ import { FilesComponent } from './components/documents/files/files.component';
 import { DocumentsPipe } from './components/documents.pipe';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ReversePipe } from './components/fichar/reversePipe';
+import { DocumentScanner } from '@ionic-native/document-scanner/ngx';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { ImageComponent } from './components/documents/images/image/image.component';
+
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent, LoginComponent, PrincipalComponent, ReversePipe,
-                 VerFichadasComponent, FicharComponent, MenuComponent, ChatComponent,
+                 VerFichadasComponent, FicharComponent, MenuComponent, ChatComponent, ImageComponent,
                  RaffleComponent, RaffleSettingsComponent, DocumentsComponent, ProfileComponent,
                  CalendarViewComponent, AddeventComponent, DeleteEventComponent, ImagesComponent, FilesComponent, DocumentsPipe],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot({mode: 'ios'}), AppRoutingModule,
-            HttpClientModule, FullCalendarModule,
+            HttpClientModule, FullCalendarModule, PdfViewerModule,
             provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth())],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, { provide: LOCALE_ID, useValue: 'es-ES' }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, { provide: LOCALE_ID, useValue: 'es-ES' }, DocumentScanner],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

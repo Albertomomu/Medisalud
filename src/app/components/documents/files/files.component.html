@@ -8,7 +8,12 @@
   <ion-content class="ion-padding" class="images-container">
       <ion-slides pager="true" [options]="slideOpts">
         <ion-slide *ngFor="let doc of docs">
-          <iframe [src]="doc | safe"></iframe>
+          <pdf-viewer
+              [src]="doc"
+              [render-text]="true"
+              [original-size]="false"
+              style="width: 100%; height: 100%">
+          </pdf-viewer>
         </ion-slide>
       </ion-slides>
     <ion-fab slot="fixed" vertical="bottom" horizontal="end">
