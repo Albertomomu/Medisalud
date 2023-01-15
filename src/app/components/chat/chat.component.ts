@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ChatComponent implements OnInit {
 
   //@ViewChild('content') private content: any;
-  @ViewChild(IonContent, {static: false}) content: IonContent;
+  @ViewChild(IonContent, {static: true}) content: IonContent;
   auth = this.userService.getAuth();
   user = this.auth.currentUser;
   id = this.user.uid;
@@ -28,7 +28,6 @@ export class ChatComponent implements OnInit {
     private chatService: ChatService,
     private userService: UserService) { }
 
-
   ionViewDidEnter() {
     this.content.scrollToBottom(0);
   }
@@ -41,6 +40,7 @@ export class ChatComponent implements OnInit {
     const showMessagesRef = ref(db, 'mensajes/');
     onValue(showMessagesRef, (snapshot) => {
         this.messages = [];
+        this.groupedByDate = [];
         snapshot.forEach((childSnapshot) =>{
           const complete = {
             id: childSnapshot.val().id,
@@ -63,27 +63,26 @@ export class ChatComponent implements OnInit {
             this.groupedByDate[msg.date] = [msg];
           }
         });
-      /* this.content.scrollToBottom(1500); */
+        console.log(this.groupedByDate);
+        this.content.scrollToBottom(0);
     });
   }
 
-/*   scrollToBottomOnInit() {
+  scrollToBottomOnInit() {
     this.content.scrollToBottom(0);
-  } */
+  }
 
   scrollToBottom(){
     this.content.scrollToBottom(1500);
   }
 
   getValue() {
-
     this.messages = [];
     this.groupedByDate = [];
     this.msgDate = new Date().toLocaleDateString('es-ES');
     this.msgTime = new Date().toLocaleTimeString('es-ES');
     this.chatService.guardarMensaje(this.id,this.user.displayName, this.msgVal, this.photo, this.msgDate, this.msgTime);
     this.msgVal = '';
-    this.content.scrollToBottom(1500);
   }
 
 }

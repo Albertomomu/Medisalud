@@ -88,10 +88,15 @@ export class RaffleComponent implements OnInit {
       participants: []
     });
     this.participating = false;
-
+    this.winner = '';
   }
 
   participate() {
+    const db = getDatabase();
+    const winner = ref(db, 'raffle/winner');
+    onValue(winner, (snapshot) => {
+      this.winner = snapshot.val();
+    });
     if(this.participating === false){
       this.raffleService.ticket(this.userID, this.user.displayName);
       this.presentAlert();
