@@ -44,7 +44,6 @@ export class ImagesComponent implements OnInit {
 
   openImage(image) {
     this.router.navigate(['/image', image.url]);
-    console.log(image.url);
   }
 
   onWillDismiss(event: Event) {

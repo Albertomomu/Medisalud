@@ -3,6 +3,7 @@ import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { DocumentsComponent } from '../documents.component';
 import { DocumentsService } from '../../../services/documents.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-files',
@@ -21,7 +22,7 @@ export class FilesComponent implements OnInit {
   };
 
   constructor(private documentsService: DocumentsService,
-              ) { }
+              private router: Router) { }
 
   ngOnInit() {
     this.docs = [];
@@ -32,6 +33,11 @@ export class FilesComponent implements OnInit {
 
   onFileChange(event: any) {
     this.selectedFile = event.target.files[0];
+  }
+
+  openDoc(doc) {
+    this.router.navigate(['/file', doc.url]);
+    console.log(doc.url);
   }
 
   cancel() {

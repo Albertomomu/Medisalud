@@ -75,8 +75,10 @@ export class DocumentsService {
     listAll(imgRef)
     .then(async response => {
       for(const item of response.items){
+        const name = item.name;
         const url = await getDownloadURL(item);
-        this.docs.push(url);
+        this.docs.push({name, url});
+        console.log(this.docs);
       }
     })
     .catch((err) => {

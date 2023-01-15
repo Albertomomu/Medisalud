@@ -38,12 +38,13 @@ import { ReversePipe } from './components/fichar/reversePipe';
 import { DocumentScanner } from '@ionic-native/document-scanner/ngx';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ImageComponent } from './components/documents/images/image/image.component';
+import { FileComponent } from './components/documents/files/file/file.component';
 
 
 @NgModule({
   declarations: [AppComponent, RegisterComponent, LoginComponent, PrincipalComponent, ReversePipe,
                  VerFichadasComponent, FicharComponent, MenuComponent, ChatComponent, ImageComponent,
-                 RaffleComponent, RaffleSettingsComponent, DocumentsComponent, ProfileComponent,
+                 RaffleComponent, RaffleSettingsComponent, DocumentsComponent, ProfileComponent, FileComponent,
                  CalendarViewComponent, AddeventComponent, DeleteEventComponent, ImagesComponent, FilesComponent, DocumentsPipe],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot({mode: 'ios'}), AppRoutingModule,
             HttpClientModule, FullCalendarModule, PdfViewerModule,

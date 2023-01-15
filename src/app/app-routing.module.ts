@@ -14,6 +14,7 @@ import { FilesComponent } from './components/documents/files/files.component';
 import { ImagesComponent } from './components/documents/images/images.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ImageComponent } from './components/documents/images/image/image.component';
+import { FileComponent } from './components/documents/files/file/file.component';
 
 const routes: Routes = [
   {
@@ -37,7 +38,8 @@ const routes: Routes = [
   {path: 'images', component: ImagesComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))},
   {path: 'calendar', component: CalendarViewComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))},
   {path: 'profile', component: ProfileComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))},
-  {path: 'image/:imgUrl', component: ImageComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))}
+  {path: 'image/:imgUrl', component: ImageComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))},
+  {path: 'file/:fileUrl', component: FileComponent, ...canActivate(()=> redirectUnauthorizedTo(['/login']))}
 ];
 
 @NgModule({
