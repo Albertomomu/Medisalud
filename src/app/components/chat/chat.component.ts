@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { IonContent } from '@ionic/angular';
-import { getDatabase, ref, onValue } from 'firebase/database';
+import { getDatabase, ref as ref_database, onValue } from 'firebase/database';
 import { ChatService } from 'src/app/services/chat.service';
 import { UserService } from 'src/app/services/user.service';
+import { getStorage, getDownloadURL, ref as ref_storage } from 'firebase/storage';
 
 @Component({
   selector: 'app-chat',
@@ -26,7 +28,8 @@ export class ChatComponent implements OnInit {
 
   constructor(
     private chatService: ChatService,
-    private userService: UserService) { }
+    private userService: UserService,
+    public domSanitizer: DomSanitizer) { }
 
   ionViewDidEnter() {
     this.content.scrollToBottom(0);
@@ -37,7 +40,7 @@ export class ChatComponent implements OnInit {
   ngOnInit() {
     this.messages = [];
     const db = getDatabase();
-    const showMessagesRef = ref(db, 'mensajes/');
+    const showMessagesRef = ref_database(db, 'mensajes/');
     onValue(showMessagesRef, (snapshot) => {
         this.messages = [];
         this.groupedByDate = [];
@@ -48,8 +51,15 @@ export class ChatComponent implements OnInit {
             message: childSnapshot.val().content,
             date: childSnapshot.val().msgDate,
             time: childSnapshot.val().msgTime,
-            photo: childSnapshot.val().photo
+            photo: ''
           };
+          if(childSnapshot.val().photo !== undefined){
+            const storage = getStorage();
+            const subTR = childSnapshot.val().photo.split('images/')[1];
+              getDownloadURL(ref_storage(storage, 'images/' + subTR)).then(url => {
+                complete.photo = url;
+              });
+          }
           if(complete.photo == null){
             complete.photo = 'https://ionicframework.com/docs/img/demos/avatar.svg';
           }
@@ -63,7 +73,6 @@ export class ChatComponent implements OnInit {
             this.groupedByDate[msg.date] = [msg];
           }
         });
-        console.log(this.groupedByDate);
         this.content.scrollToBottom(0);
     });
   }
