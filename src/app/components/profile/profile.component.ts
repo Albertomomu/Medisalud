@@ -49,20 +49,35 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile() {
-    const name = this.updateProfileForm.get('name').value;
-    const surname = this.updateProfileForm.get('surname').value;
-    const picture = this.selectedFile.name;
-    this.documentsService.uploadFile(this.selectedFile);
+    if(this.selectedFile == null){
+      const name = this.updateProfileForm.get('name').value;
+      const surname = this.updateProfileForm.get('surname').value;
 
-    updateProfile(this.auth.currentUser, {
-      displayName: name + ' ' + surname,
-      photoURL: 'gs://lowgames-e327f.appspot.com/images/' + picture
-    }).then(() => {
+      updateProfile(this.auth.currentUser, {
+        displayName: name + ' ' + surname
+      }).then(() => {
       // ...
-    }).catch((error) => {
-      console.log(error);
+      }).catch((error) => {
+        console.log(error);
       // ...
-    });
+      });
+    }else{
+      const name = this.updateProfileForm.get('name').value;
+      const surname = this.updateProfileForm.get('surname').value;
+      const picture = this.selectedFile.name;
+      this.documentsService.uploadFile(this.selectedFile);
+
+      updateProfile(this.auth.currentUser, {
+        displayName: name + ' ' + surname,
+        photoURL: 'gs://lowgames-e327f.appspot.com/images/' + picture
+      }).then(() => {
+      // ...
+      }).catch((error) => {
+        console.log(error);
+      // ...
+      });
+    }
+
 
   }
 }
