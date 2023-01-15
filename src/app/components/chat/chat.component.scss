@@ -59,11 +59,15 @@ ion-avatar {
     padding: 0.5em;
     width: auto !important;
     border-radius: 16px;
-    min-height: 100%vw;
+    min-height: 100%;
 }
 
 .completeMessage {
     width: auto;
+}
+
+.completeMessage  ion-avatar img{
+   margin-top: -40px;
 }
 
 .align-left{
