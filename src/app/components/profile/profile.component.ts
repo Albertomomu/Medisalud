@@ -5,6 +5,7 @@ import { getAuth, updateProfile } from 'firebase/auth';
 import { DocumentsService } from 'src/app/services/documents.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -26,11 +27,22 @@ export class ProfileComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private documentsService: DocumentsService,
-    public domSanitizer: DomSanitizer
+    public domSanitizer: DomSanitizer,
+    private toastController: ToastController
   ) {}
 
   get errorControl() {
     return this.updateProfileForm.controls;
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Profile updated correctly!',
+      duration: 2000,
+      position: 'top'
+    });
+
+    await toast.present();
   }
 
   ngOnInit() {
@@ -56,10 +68,10 @@ export class ProfileComponent implements OnInit {
       updateProfile(this.auth.currentUser, {
         displayName: name + ' ' + surname
       }).then(() => {
-      // ...
+        this.presentToast();
       }).catch((error) => {
         console.log(error);
-      // ...
+        this.presentToast();
       });
     }else{
       const name = this.updateProfileForm.get('name').value;
@@ -71,10 +83,10 @@ export class ProfileComponent implements OnInit {
         displayName: name + ' ' + surname,
         photoURL: 'gs://lowgames-e327f.appspot.com/images/' + picture
       }).then(() => {
-      // ...
+      this.presentToast();
       }).catch((error) => {
         console.log(error);
-      // ...
+        this.presentToast();
       });
     }
 
