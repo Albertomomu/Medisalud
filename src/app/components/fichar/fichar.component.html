@@ -40,7 +40,7 @@
             <div *ngFor="let group of groupedByDate | reverse | keyvalue:sortNull let i = index" class="ion-margin-top">
               <h4 class="ion-text-center fecha">---- {{group.key}} ----</h4>
               <ion-list lines="full" [inset]="true">
-                <ion-item *ngFor="let fic of group.value | keyvalue let i = index">{{fic.value.date}} {{fic.value.hour}} - {{fic.value.estado}}</ion-item>
+                <ion-item *ngFor="let fic of group.value | keyvalue:sortNull let i = index">{{fic.value.date}} {{fic.value.hour}} - {{fic.value.estado}}</ion-item>
               </ion-list>
             </div>
           </div>
