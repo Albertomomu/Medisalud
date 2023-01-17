@@ -1,5 +1,6 @@
 ion-content {
-    --background: url(/assets/images/chatBackground.jpg) no-repeat center center / cover;
+    box-sizing: border-box;
+    --background: url(/assets/images/chatBackground.jpg) no-repeat center center / cover; 
 }
 
 ion-list {
@@ -8,7 +9,137 @@ ion-list {
     flex-direction: column;
 }
 
-.textBottom{
+ .bg{
+    max-height: 100% !important;
+} 
+
+ion-footer {
+    background-color: transparent;
+}
+
+ion-avatar > img {
+    position: block;
+    width: 25px !important;
+    height: 25px !important;
+}
+ion-avatar {
+    width: 25px !important;
+    height: 25px !important;
+    margin: 0;
+    margin-right: 5px;
+}  
+
+.fecha {
+    font-size: 12px;
+    height: 18px;
+    color: grey;
+}
+
+ .msgUsername{
+    font-size: 11px;
+}
+
+.msgAvatar {
+    display: flex;
+    flex-direction: row;
+}
+
+  .message {
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin: 0.2em 0;
+    padding: 0.5em; 
+    width: auto !important;
+    border-radius: 16px;
+    min-height: 100%;
+} 
+
+.completeMessage {
+    width: auto;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.completeMessage  ion-avatar img{
+   margin-top: -40px;
+}
+
+.align-left{
+    text-align: left;
+}
+
+.align-right{
+    text-align: right;
+}
+
+.left{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.msgTime {
+    font-size: 9px;
+    line-height: 3px;
+}
+
+.me {
+    background-color: #0084FF;
+    color: white;
+    float: right;
+    width: 100%;
+}
+  
+.you {
+    float: left !important;
+    background-color: white;
+    color: black;
+    margin-left: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//ALL THAT WE NEED
+/* .textBottom{
     box-sizing: border-box;
     position: fixed;
     z-index: 999;
@@ -35,7 +166,8 @@ ion-avatar {
 }
 
 .bg {
-    margin-bottom: 80px;
+    max-height: 80%;
+    margin-bottom: 50px;
 }
 
 .fecha {
@@ -115,4 +247,4 @@ ion-avatar {
 
 .ion-padding-bottom {
     padding-bottom: 90px;
-}
+} */

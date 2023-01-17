@@ -14,23 +14,26 @@
       <ion-title>Hola</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content class="ion-padding" #content [scrollEvents]="true">
-    <div *ngIf="messages"  class="bg">
-      <ion-list *ngFor="let group of groupedByDate | keyvalue: sortNull">
-        <h4 class="ion-text-center"><ion-chip class="fecha">{{group.key}}</ion-chip></h4>
-        <div class="completeMessage" *ngFor="let msg of group.value | keyvalue: sortNull">
-          <div class="message" [ngClass]="msg.value.id === id ? 'me' : 'you'"><span class="msgUsername" *ngIf='msg.value.id !== id'>{{msg.value.user}}<br></span>{{msg.value.message}}<span class="msgTime">  {{msg.value.time}}</span></div>
-          <ion-avatar *ngIf="msg.value.id !== id">
-            <img referrerpolicy=“no-referrer” alt="profile picture" [src]="domSanitizer.bypassSecurityTrustResourceUrl(msg.value.photo)"/>
-          </ion-avatar> 
-          
-        </div>
-      </ion-list>
+  <ion-content class="ion-padding" [scrollEvents]="true">
+    <div #content class="bg">
+      <div *ngIf="messages">
+        <ion-list *ngFor="let group of groupedByDate | keyvalue: sortNull">
+          <h4 class="ion-text-center"><ion-chip class="fecha">{{group.key}}</ion-chip></h4>
+          <div class="completeMessage" *ngFor="let msg of group.value | keyvalue: sortNull">
+            <div class="message" [ngClass]="msg.value.id === id ? 'me' : 'you'"><span class="msgUsername" *ngIf='msg.value.id !== id'>{{msg.value.user}}<br></span>{{msg.value.message}}<span class="msgTime">  {{msg.value.time}}</span></div>
+            <ion-avatar *ngIf="msg.value.id !== id">
+              <img referrerpolicy=“no-referrer” alt="profile picture" [src]="domSanitizer.bypassSecurityTrustResourceUrl(msg.value.photo)"/>
+            </ion-avatar> 
+          </div>
+        </ion-list>
+      </div>
     </div>
+  </ion-content>
+  <ion-footer>
     <div>
       <ion-item class="textBottom">
         <ion-input class="inputText" placeholder="Enter text" [(ngModel)]="msgVal" (keyup.enter)="[getValue(), scrollToBottom()]"></ion-input>
       </ion-item>
     </div>
-  </ion-content>
+  </ion-footer>
 </div>

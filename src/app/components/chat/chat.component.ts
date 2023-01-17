@@ -13,8 +13,7 @@ import { getStorage, getDownloadURL, ref as ref_storage } from 'firebase/storage
 })
 export class ChatComponent implements OnInit {
 
-  //@ViewChild('content') private content: any;
-  @ViewChild(IonContent, {static: true}) content: IonContent;
+  @ViewChild(IonContent) content: IonContent;
   auth = this.userService.getAuth();
   user = this.auth.currentUser;
   id = this.user.uid;
@@ -26,14 +25,17 @@ export class ChatComponent implements OnInit {
   messagesWriter: any = [];
   groupedByDate = {};
 
+
   constructor(
     private chatService: ChatService,
     private userService: UserService,
     public domSanitizer: DomSanitizer) { }
 
-  ionViewDidEnter() {
-    this.content.scrollToBottom(0);
-  }
+    ionViewDidEnter() {
+      setTimeout(() => {
+        this.content.scrollToBottom(0);
+      }, 200);
+    }
 
   sortNull(){ };
 
@@ -73,16 +75,14 @@ export class ChatComponent implements OnInit {
             this.groupedByDate[msg.date] = [msg];
           }
         });
-        this.content.scrollToBottom(0);
+        /* this.scrollToBottom(); */
     });
   }
 
-  scrollToBottomOnInit() {
-    this.content.scrollToBottom(0);
-  }
-
   scrollToBottom(){
-    this.content.scrollToBottom(1500);
+    setTimeout(() => {
+      this.content.scrollToBottom(300);
+    }, 200);
   }
 
   getValue() {
