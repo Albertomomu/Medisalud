@@ -75,14 +75,14 @@ export class ChatComponent implements OnInit {
             this.groupedByDate[msg.date] = [msg];
           }
         });
-        /* this.scrollToBottom(); */
+        this.scrollToBottom();
     });
   }
 
   scrollToBottom(){
     setTimeout(() => {
       this.content.scrollToBottom(300);
-    }, 200);
+    }, 500);
   }
 
   getValue() {
