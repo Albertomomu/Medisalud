@@ -52,6 +52,7 @@ export class ProfileComponent implements OnInit {
     });
     this.updateProfileForm = this.formBuilder.group({
       name: [this.auth.currentUser.displayName.split(' ')[0], Validators.required],
+      // eslint-disable-next-line max-len
       surname: [this.auth.currentUser.displayName.split(' ')[1], Validators.required]
     });
   }
@@ -61,7 +62,7 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile() {
-    if(this.selectedFile == null){
+    if(this.selectedFile == null || this.selectedFile === undefined ){
       const name = this.updateProfileForm.get('name').value;
       const surname = this.updateProfileForm.get('surname').value;
 
@@ -71,9 +72,8 @@ export class ProfileComponent implements OnInit {
         this.presentToast();
       }).catch((error) => {
         console.log(error);
-        this.presentToast();
       });
-    }else{
+    } else{
       const name = this.updateProfileForm.get('name').value;
       const surname = this.updateProfileForm.get('surname').value;
       const picture = this.selectedFile.name;
@@ -86,7 +86,6 @@ export class ProfileComponent implements OnInit {
       this.presentToast();
       }).catch((error) => {
         console.log(error);
-        this.presentToast();
       });
     }
 
